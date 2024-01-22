@@ -9,8 +9,11 @@ export const POST = async (req: NextRequest) => {
         await connectDB()
         const newUser = await req.json()
         const user = new userCollection(newUser)
-        await user.save()
-        return NextResponse.json({ message: "user creat successful" });
+        const result = await user.save()
+        if (result._id) {
+            return NextResponse.json({ message: "user creat successful" });
+        }
+        return serverError(req)
     } catch (error) {
         return serverError(req)
     }

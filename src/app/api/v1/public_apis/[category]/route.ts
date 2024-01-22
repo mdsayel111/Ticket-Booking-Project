@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCollection, getFilterObject } from "@/BackendFiles/Utils";
+import { getCollection } from "@/BackendFiles/Utils";
 import { connectDB } from "@/BackendFiles/Utils/MongoDB-Utils";
 import { serverError } from "@/BackendFiles/OnError";
 
@@ -14,12 +14,17 @@ export const GET = async (req: NextRequest, { params }: any) => {
             const singleData = await dataObtainCollections.findById(id)
             return NextResponse.json({ singleData })
         } else {
-            // creat filter obj for find multiple data
-            let filter: object;
-            const date = searchParams.get("date")
-            console.log(date)
-            if (date) {
-                filter = { date: new Date(date) }
+            // creat filter obj for find multiple data and send multiple data
+            let filter: { date?: Date, email?: String } = {};
+            const date: any = searchParams.get("date")
+            const email: any = searchParams.get("date")
+            if (searchParams.size > 0) {
+                if (date === "all") {
+                    filter.date = new Date(date)
+                }
+                if (email) {
+                    filter.email = email
+                }
                 const multiData = await dataObtainCollections.find(filter)
                 return NextResponse.json({ multiData: multiData })
             }

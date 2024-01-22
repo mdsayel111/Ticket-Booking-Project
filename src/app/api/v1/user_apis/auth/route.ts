@@ -31,7 +31,10 @@ export const GET = async (req: NextRequest) => {
         const { searchParams } = new URL(req.url)
         const id = searchParams.get("id")
         const { role } = await userCollection.findById(id).exec();
-        return NextResponse.json({ role: role })
+        if (role) {
+            return NextResponse.json({ role: role })
+        }
+        return serverError(req)
     } catch (error) {
         return serverError(req)
     }
