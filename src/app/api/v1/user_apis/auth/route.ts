@@ -1,7 +1,8 @@
 var jwt = require('jsonwebtoken');
 import { userCollection } from "@/BackendFiles/Collections";
-import { serverError } from "@/BackendFiles/OnError";
+import { serverError, unathorizeError } from "@/BackendFiles/OnError";
 import { connectDB } from "@/BackendFiles/Utils/MongoDB-Utils";
+import { verifyToken } from "@/BackendFiles/Utils/auth-utils";
 import { NextRequest, NextResponse } from "next/server";
 import { useSearchParams } from "react-router-dom";
 
@@ -16,7 +17,7 @@ export const POST = async (req: NextRequest) => {
 
         return new NextResponse(JSON.stringify({ message: "token send successfull" }), {
             status: 200,
-            headers: { "Set-Cookie": `token=${token}; sameSite=strict; httpOnly=true; maxAge=60*60*24` },
+            headers: { "Set-Cookie": `token=${token}; sameSite=strict; Path=/; httpOnly=true; maxAge=60*60*24` },
         });
     } catch (error) {
         return serverError(req)
@@ -27,14 +28,18 @@ export const POST = async (req: NextRequest) => {
 // get role API
 export const GET = async (req: NextRequest) => {
     try {
-        await connectDB()
-        const { searchParams } = new URL(req.url)
-        const id = searchParams.get("id")
-        const { role } = await userCollection.findById(id).exec();
-        if (role) {
-            return NextResponse.json({ role: role })
+        const isVerify = await verifyToken(req)
+        if (isVerify) {
+            await connectDB()
+            const { searchParams } = new URL(req.url)
+            const email = searchParams.get("email")
+            const { role } = await userCollection.findOne({ email: email });
+            if (role) {
+                return NextResponse.json({ role: role })
+            }
+            return serverError(req)
         }
-        return serverError(req)
+        return unathorizeError(req)
     } catch (error) {
         return serverError(req)
     }

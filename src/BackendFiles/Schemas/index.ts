@@ -57,8 +57,11 @@ export const movieSchema = new Schema({
     hostEmail: {
         type: String,
         required: [true, "Some Property is missing"]
+    },
+    location: {
+        type: String,
+        required: [true, "Some Property is missing"]
     }
-
 });
 
 export const event_And_sports_Schema = new Schema({
@@ -110,6 +113,10 @@ export const event_And_sports_Schema = new Schema({
     price: {
         type: Number,
         required: [true, "Some Property is missing"]
+    },
+    location: {
+        type: String,
+        required: [true, "Some Property is missing"]
     }
 });
 
@@ -120,7 +127,8 @@ export const userSchema = new Schema({
     },
     role: {
         type: String,
-        default: "user"
+        default: "user",
+        enum: ["user", "host", "admin"]
     },
     status: {
         type: String,
@@ -129,7 +137,8 @@ export const userSchema = new Schema({
     },
     reqRole: {
         type: String,
-        default: "none"
+        default: "none",
+        enum: ["host", "none"]
     },
 });
 

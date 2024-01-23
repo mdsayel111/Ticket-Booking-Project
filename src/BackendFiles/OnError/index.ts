@@ -6,3 +6,9 @@ export const serverError = (req: NextRequest) => {
         status: 500,
     });
 }
+
+export const unathorizeError = (req: NextRequest) => {
+    return new NextResponse(JSON.stringify({ message: "Unathorize" }), {
+        status: 401
+    })
+}

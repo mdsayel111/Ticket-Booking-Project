@@ -1,26 +1,27 @@
 import { userCollection } from "@/BackendFiles/Collections"
 import { serverError, unathorizeError } from "@/BackendFiles/OnError"
 import { connectDB } from "@/BackendFiles/Utils/MongoDB-Utils"
-import { verifyHost } from "@/BackendFiles/Utils/auth-utils"
 import { NextRequest, NextResponse } from "next/server"
+import { addFeild } from "../../../../../../addFeild"
+import { verifyAdmin } from "@/BackendFiles/Utils/auth-utils"
 
 export const PATCH = async (req: NextRequest) => {
     try {
-        const isHost = await verifyHost(req)
-        if (isHost) {
+        const isAdmin = await verifyAdmin(req)
+        if (isAdmin) {
             const { searchParams } = new URL(req.url)
-            const email = searchParams.get("email")
+            const id = searchParams.get("id")
             const updateDoc = {
                 $set: {
-                    status: "pending",
-                    reqRole: "host"
+                    role: "host",
+                    reqRole: "none",
+                    status: "none"
                 }
             }
             await connectDB()
-            const result = await userCollection.updateOne({ email: email }, updateDoc, { runValidators: true })
-            console.log(result)
-            if (result.modifiedCount > 0) {
-                return NextResponse.json({ message: "Request sent successful" })
+            const singleUser = await userCollection.findByIdAndUpdate(id, updateDoc, { runValidators: true })
+            if (singleUser._id) {
+                return NextResponse.json({ message: "Role update successful" })
             }
             return serverError(req)
         }
