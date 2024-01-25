@@ -1,0 +1,8 @@
+.banner {
+  background-image: url("https://pixner.net/boleto/demo/assets/images/banner/banner01.jpg");
+  height: 80vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}

@@ -1,6 +1,6 @@
-import { eventCollection, movieCollection, sportCollection } from "@/BackendFiles/Collections";
-import { serverError } from "@/BackendFiles/OnError";
-import { connectDB } from "@/BackendFiles/Utils/MongoDB-Utils";
+import { eventCollection, movieCollection, sportCollection } from "@/ServerFiles/Collections";
+import { serverError } from "@/ServerFiles/OnError";
+import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils";
 import { NextRequest, NextResponse } from "next/server";
 
 // latest movie,sports and event API

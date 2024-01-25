@@ -1,7 +1,7 @@
-import { userCollection } from "@/BackendFiles/Collections"
-import { serverError, unathorizeError } from "@/BackendFiles/OnError"
-import { connectDB } from "@/BackendFiles/Utils/MongoDB-Utils"
-import { verifyAdmin } from "@/BackendFiles/Utils/auth-utils"
+import { userCollection } from "@/ServerFiles/Collections"
+import { serverError, unathorizeError } from "@/ServerFiles/OnError"
+import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils"
+import { verifyAdmin } from "@/ServerFiles/Utils/auth-utils"
 import { NextRequest, NextResponse } from "next/server"
 
 export const GET = async (req: NextRequest) => {
@@ -15,7 +15,7 @@ export const GET = async (req: NextRequest) => {
                 const muliUser = await userCollection.find({ status })
                 return NextResponse.json({ muliUser })
             }
-            const multiUser = await userCollection.find()
+            const multiUser = await userCollection.find({})
             return NextResponse.json({ multiUser })
         }
         return unathorizeError(req)

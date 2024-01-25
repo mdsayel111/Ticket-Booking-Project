@@ -1,7 +1,7 @@
-import { userCollection } from "@/BackendFiles/Collections"
-import { serverError, unathorizeError } from "@/BackendFiles/OnError"
-import { connectDB } from "@/BackendFiles/Utils/MongoDB-Utils"
-import { verifyHost } from "@/BackendFiles/Utils/auth-utils"
+import { userCollection } from "@/ServerFiles/Collections"
+import { serverError, unathorizeError } from "@/ServerFiles/OnError"
+import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils"
+import { verifyHost } from "@/ServerFiles/Utils/auth-utils"
 import { NextRequest, NextResponse } from "next/server"
 
 export const PATCH = async (req: NextRequest) => {

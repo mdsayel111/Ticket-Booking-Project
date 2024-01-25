@@ -1,5 +1,5 @@
-import { eventCollection, movieCollection, sportCollection } from "@/BackendFiles/Collections"
-import { connectDB } from "@/BackendFiles/Utils/MongoDB-Utils"
+import { eventCollection, movieCollection, sportCollection } from "@/ServerFiles/Collections"
+import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils"
 const mongoose = require('mongoose');
 
 export const addFeild = async () => {

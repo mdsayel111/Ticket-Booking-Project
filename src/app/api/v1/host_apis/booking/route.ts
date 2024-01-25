@@ -1,7 +1,7 @@
-import { bookingCollection } from "@/BackendFiles/Collections"
-import { serverError, unathorizeError } from "@/BackendFiles/OnError"
-import { connectDB } from "@/BackendFiles/Utils/MongoDB-Utils"
-import { verifyHost } from "@/BackendFiles/Utils/auth-utils"
+import { bookingCollection } from "@/ServerFiles/Collections"
+import { serverError, unathorizeError } from "@/ServerFiles/OnError"
+import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils"
+import { verifyHost } from "@/ServerFiles/Utils/auth-utils"
 import { NextRequest, NextResponse } from "next/server"
 
 export const GET = async (req: NextRequest) => {

@@ -1,7 +1,7 @@
-import { serverError, unathorizeError } from "@/BackendFiles/OnError"
-import { getCollection } from "@/BackendFiles/Utils"
-import { connectDB } from "@/BackendFiles/Utils/MongoDB-Utils"
-import { verifyHost } from "@/BackendFiles/Utils/auth-utils"
+import { serverError, unathorizeError } from "@/ServerFiles/OnError"
+import { getCollection } from "@/ServerFiles/Utils"
+import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils"
+import { verifyHost } from "@/ServerFiles/Utils/auth-utils"
 import { NextRequest, NextResponse } from "next/server"
 
 export const POST = async (req: NextRequest, { params }: any) => {
