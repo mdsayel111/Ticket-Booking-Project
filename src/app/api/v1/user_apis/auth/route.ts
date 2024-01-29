@@ -1,10 +1,9 @@
 var jwt = require('jsonwebtoken');
-import { userCollection } from "@/ServerFiles/Collections";
+import { userCollection } from "@/CLient-And-Server-Shared-Files/Collections";
 import { serverError, unathorizeError } from "@/ServerFiles/OnError";
 import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils";
 import { verifyToken } from "@/ServerFiles/Utils/auth-utils";
 import { NextRequest, NextResponse } from "next/server";
-import { useSearchParams } from "react-router-dom";
 
 
 // token api

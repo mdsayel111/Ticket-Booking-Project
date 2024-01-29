@@ -1,4 +1,4 @@
-import { userCollection } from "@/ServerFiles/Collections"
+import { userCollection } from "@/CLient-And-Server-Shared-Files/Collections"
 import { serverError, unathorizeError } from "@/ServerFiles/OnError"
 import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils"
 import { NextRequest, NextResponse } from "next/server"

@@ -1,5 +1,5 @@
+import { getCollection } from "@/CLient-And-Server-Shared-Files/Utils/Email"
 import { serverError, unathorizeError } from "@/ServerFiles/OnError"
-import { getCollection } from "@/ServerFiles/Utils"
 import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils"
 import { verifyHost } from "@/ServerFiles/Utils/auth-utils"
 import { NextRequest, NextResponse } from "next/server"
@@ -10,7 +10,7 @@ export const POST = async (req: NextRequest, { params }: any) => {
         if (isHost) {
             const { category } = params
             const data = await req.json()
-            const dataObtainCollections = getCollection(req, params)
+            const dataObtainCollections = getCollection(params)
             await connectDB()
             const newData = new dataObtainCollections(data)
             const result = await newData.save()
@@ -39,7 +39,7 @@ export const PATCH = async (req: NextRequest, { params }: any) => {
                     ...data
                 }
             }
-            const dataObtainCollections = getCollection(req, params)
+            const dataObtainCollections = getCollection(params)
             await connectDB()
             const result = await dataObtainCollections.findOneAndUpdate({ _id: id }, updateDoc)
             if (result._id) {
@@ -60,7 +60,7 @@ export const DELETE = async (req: NextRequest, { params }: any) => {
             const { category } = params
             const { searchParams } = new URL(req.url)
             const id = searchParams.get("id")
-            const dataObtainCollections = getCollection(req, params)
+            const dataObtainCollections = getCollection(params)
             await connectDB()
             const result = await dataObtainCollections.deleteOne({ _id: id })
             console.log(result)

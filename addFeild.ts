@@ -1,4 +1,4 @@
-import { eventCollection, movieCollection, sportCollection } from "@/ServerFiles/Collections"
+import { eventCollection, movieCollection, sportCollection } from "@/CLient-And-Server-Shared-Files/Collections"
 import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils"
 const mongoose = require('mongoose');
 

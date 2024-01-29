@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 import { NextRequest } from "next/server";
-import { userCollection } from "../Collections";
+import { userCollection } from "../../CLient-And-Server-Shared-Files/Collections";
 
 export const verifyToken = async (req: NextRequest) => {
     const { searchParams } = new URL(req.url)

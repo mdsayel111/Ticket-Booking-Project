@@ -17,6 +17,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Image from "next/image";
 import CommonButton from "../CommonButton/CommonButton";
+import Logo from "../Logo/Logo";
 
 interface Props {
   /**
@@ -75,7 +76,11 @@ export default function Navbar(props: Props) {
   return (
     <Box sx={{ display: "flex", height: "64px" }}>
       <CssBaseline />
-      <AppBar id="navbar" component="nav" sx={{ backgroundColor: "dark" }}>
+      <AppBar
+        id="navbar"
+        component="nav"
+        sx={{ backgroundColor: "transparent" }}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -91,7 +96,7 @@ export default function Navbar(props: Props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            <Image src={"/images/logo.png"} alt="logo" height={50} width={50} />
+            <Logo />
           </Typography>
           <Box
             sx={{

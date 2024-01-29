@@ -1,0 +1,13 @@
+.icon-container .icon:hover {
+  background-color: var(--tertiary);
+}
+.icon-container .icon {
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.footer-menu li{
+    padding: 0px 8px;
+    cursor: pointer;
+}

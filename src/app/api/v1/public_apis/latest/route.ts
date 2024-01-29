@@ -1,4 +1,4 @@
-import { eventCollection, movieCollection, sportCollection } from "@/ServerFiles/Collections";
+import { eventCollection, movieCollection, sportCollection } from "@/CLient-And-Server-Shared-Files/Collections";
 import { serverError } from "@/ServerFiles/OnError";
 import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils";
 import { NextRequest, NextResponse } from "next/server";

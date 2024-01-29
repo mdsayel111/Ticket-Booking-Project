@@ -19,7 +19,13 @@ export default function RootLayout({
       <head>
         <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon" />
       </head>
-      <body id="root" className={inter.className}>{children}</body>
+      <body
+        id="root"
+        className={inter.className}
+        style={{ backgroundColor: "var(--primary)" }}
+      >
+        {children}
+      </body>
     </html>
   );
 }

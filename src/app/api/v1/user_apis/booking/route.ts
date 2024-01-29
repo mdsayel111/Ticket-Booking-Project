@@ -1,4 +1,4 @@
-import { bookingCollection } from "@/ServerFiles/Collections";
+import { bookingCollection } from "@/CLient-And-Server-Shared-Files/Collections";
 import { serverError, unathorizeError } from "@/ServerFiles/OnError";
 import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils";
 import { verifyToken } from "@/ServerFiles/Utils/auth-utils";
