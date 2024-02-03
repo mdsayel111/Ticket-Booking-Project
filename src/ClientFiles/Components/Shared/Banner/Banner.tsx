@@ -1,12 +1,12 @@
 import React from "react";
 import BackgroundImage from "../BackgroundImage/BackgroundImage";
 import TextAnimation from "../TextAnimation/TextAnimation";
-
-const Banner = () => {
+// { bannerImg }: { bannerImg: string }
+const Banner = ({ bannerImg }: { bannerImg: string }) => {
   return (
     <BackgroundImage
       values={{
-        background: `url("/images/banner01.jpg")`,
+        background: `url("${bannerImg}")`,
         marginTop: "-68px",
       }}
     >

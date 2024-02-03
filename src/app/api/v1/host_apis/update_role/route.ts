@@ -18,7 +18,6 @@ export const PATCH = async (req: NextRequest) => {
             }
             await connectDB()
             const result = await userCollection.updateOne({ email: email }, updateDoc, { runValidators: true })
-            console.log(result)
             if (result.modifiedCount > 0) {
                 return NextResponse.json({ message: "Request sent successful" })
             }

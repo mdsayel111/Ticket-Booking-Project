@@ -16,13 +16,21 @@ export const GET = async (req: NextRequest, { params }: any) => {
             return NextResponse.json({ singleData })
         } else {
             // creat filter obj for find multiple data and send multiple data
-            let filter: { date?: Date, email?: String } = {};
+            let filter: { date?: object, email?: String } = {};
             const date: any = searchParams.get("date")
             const email: any = searchParams.get("email")
             // add filter proberty
             if (searchParams.size > 0) {
                 if (date !== "all") {
-                    filter.date = new Date(date)
+                    // make start date and end date for filter
+                    const startDate = new Date(date)
+                    const endDate = new Date(startDate);
+                    endDate.setDate(startDate.getDate() + 2);
+
+                    filter.date = {
+                        $gte: startDate,
+                        $lt: endDate
+                    }
                 }
                 if (email) {
                     filter.email = email
@@ -34,7 +42,7 @@ export const GET = async (req: NextRequest, { params }: any) => {
             const allData = await dataObtainCollections.find({})
             return NextResponse.json(allData)
         }
-    } catch (error) {
+    } catch (error: any) {
         return serverError(req)
     }
 }

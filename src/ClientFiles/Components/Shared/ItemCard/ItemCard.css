@@ -3,7 +3,6 @@
   transition: all ease 0.3s;
   cursor: pointer;
 }
-.css-7rtu5x-MuiPaper-root-MuiCard-root:hover
-  .MuiTypography-root.MuiTypography-h5.MuiTypography-gutterBottom.css-yu190l-MuiTypography-root {
+#card:hover .css-o335fl-MuiTypography-root {
   color: var(--tertiary);
 }

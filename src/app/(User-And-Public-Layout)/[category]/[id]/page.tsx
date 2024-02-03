@@ -1,5 +1,6 @@
+import Event_Or_Sports_Details from "@/ClientFiles/Components/ItemDetails/Event_Or_Sports_Details";
+import MovieDetails from "@/ClientFiles/Components/ItemDetails/MovieDetails";
 import { getData } from "@/ClientFiles/Utils/FetchPagedata";
-import React from "react";
 
 const page = async ({
   params,
@@ -7,8 +8,18 @@ const page = async ({
   params: { category: string; id: string };
 }) => {
   const { category, id } = params;
-  const data = await getData(params, { id });
-  return <div></div>;
+  const { singleData: item } = await getData(params, {
+    id,
+  });
+  return (
+    <>
+      {category === "movies" ? (
+        <MovieDetails values={{ item: item }} />
+      ) : (
+        <Event_Or_Sports_Details values={{ item: item }} />
+      )}
+    </>
+  );
 };
 
 export default page;

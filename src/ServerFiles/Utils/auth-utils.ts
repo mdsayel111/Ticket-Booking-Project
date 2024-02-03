@@ -6,11 +6,9 @@ export const verifyToken = async (req: NextRequest) => {
     const { searchParams } = new URL(req.url)
     const email = searchParams.get("email")
     const token = req.cookies.get("token")?.value
-    console.log(token)
     if (token) {
         try {
             const decoded = await jwt.verify(token, process.env.NEXT_PUBLIC_SECRET)
-            console.log(decoded, email)
             if (decoded.email === email) {
                 return email
             }

@@ -21,7 +21,6 @@ export const POST = async (req: NextRequest, { params }: any) => {
         }
         return unathorizeError(req)
     } catch (error: any) {
-        console.log(error.message)
         return serverError(req)
     }
 }
@@ -63,7 +62,6 @@ export const DELETE = async (req: NextRequest, { params }: any) => {
             const dataObtainCollections = getCollection(params)
             await connectDB()
             const result = await dataObtainCollections.deleteOne({ _id: id })
-            console.log(result)
             if (result.deletedCount > 0) {
                 return NextResponse.json({ message: `${category.slice(0, category.length - 1)} update successful` })
             }

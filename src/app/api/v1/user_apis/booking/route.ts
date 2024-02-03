@@ -19,7 +19,6 @@ export const POST = async (req: NextRequest) => {
         }
         return unathorizeError(req)
     } catch (error: any) {
-        console.log(error.message)
         return serverError(req)
     }
 };

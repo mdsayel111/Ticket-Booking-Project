@@ -17,14 +17,14 @@ const page = async () => {
 
   return (
     <>
-      <Banner />
+      <Banner bannerImg="/images/banner01.jpg" />
       <Container>
         {categories.map((category, index) => (
           <div key={index}>
             <CategoryHeader
               values={{ title: category.title, link: category.path }}
             />
-            <div className="flex flex-wrap justify-center gap-8 my-10">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 my-10">
               {latestItems[latestItemName[index]].map((item, index) => (
                 <ItemCard
                   key={index}

@@ -16,7 +16,6 @@ export const GET = async (req: NextRequest) => {
         }
         return unathorizeError(req)
     } catch (error) {
-        console.log(error)
         return serverError(req)
     }
 }

@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import "./ItemCard.css";
 import Link from "next/link";
 import NoSSR from "@/ClientFiles/Wraper/NoSSR";
+var moment = require('moment');
 
 const ItemCard = ({
   values,
@@ -38,20 +39,23 @@ const ItemCard = ({
               />
             </div>
             <CardContent>
-              <Typography
-                gutterBottom
-                variant="h5"
-                component="div"
-                sx={{
-                  color: "white",
-                  fontWeight: "500",
-                  borderBottom: "#11326f dashed",
-                  borderBottomWidth: "1px",
-                  paddingBottom: "20px",
-                }}
-              >
-                {item.title}
-              </Typography>
+              <div>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="div"
+                  sx={{
+                    color: "white",
+                    fontWeight: "500",
+                    borderBottom: "#11326f dashed",
+                    borderBottomWidth: "1px",
+                    paddingBottom: "20px",
+                  }}
+                >
+                  {item.title}
+                </Typography>
+                <span className="text-white">Date : {moment(item.date).format('DD/MM/YYYY')}</span>
+              </div>
             </CardContent>
             <CardActions>
               <p className="text-white">{item.location}</p>

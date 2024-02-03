@@ -18,6 +18,7 @@ import Button from "@mui/material/Button";
 import Image from "next/image";
 import CommonButton from "../CommonButton/CommonButton";
 import Logo from "../Logo/Logo";
+import Link from "next/link";
 
 interface Props {
   /**
@@ -28,7 +29,12 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact"];
+const navItems = [
+  { title: "Home", path: "/" },
+  { title: "Movies", path: "/movies" },
+  { title: "Events", path: "/events" },
+  { title: "Sports", path: "/sports" },
+];
 
 export default function Navbar(props: Props) {
   const { opening } = props;
@@ -40,7 +46,6 @@ export default function Navbar(props: Props) {
 
   React.useEffect(() => {
     const navbar = document.getElementById("navbar") as HTMLElement;
-    console.log(window.scrollY === 0);
 
     // Add a scroll event listener
     window.addEventListener("scroll", function () {
@@ -60,9 +65,11 @@ export default function Navbar(props: Props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+          <ListItem key={item.title} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
+              <Link href={item.path}>
+                <ListItemText primary={item.title} />
+              </Link>
             </ListItemButton>
           </ListItem>
         ))}
@@ -107,11 +114,13 @@ export default function Navbar(props: Props) {
             }}
           >
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: "#fff" }}>
-                {item}
-              </Button>
+              <Link key={item.title} href={item.path}>
+                <Button sx={{ color: "#fff" }}>{item.title}</Button>
+              </Link>
             ))}
-            <CommonButton value={{ text: "join us" }} />
+            <Link href={"/_signup_or_signin"}>
+              <CommonButton value={{ text: "join us" }} />
+            </Link>
           </Box>
         </Toolbar>
       </AppBar>

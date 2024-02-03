@@ -1,0 +1,13 @@
+.react-date-picker__wrapper svg {
+  stroke: white;
+}
+.react-calendar__month-view__days,
+.react-date-picker__inputGroup__input.react-date-picker__inputGroup__month {
+  background-color: var(--primary);
+}
+.react-calendar__month-view {
+  background-color: #032055;
+}
+.react-calendar {
+  background-color: var(--tertiary);
+}

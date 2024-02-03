@@ -19,5 +19,4 @@ export const sendMail = async (messageBody: {
     html: String, // html body
 }) => {
     const info = await transporter.sendMail(messageBody);
-    console.log(info.messageId)
 }

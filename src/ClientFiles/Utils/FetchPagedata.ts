@@ -4,7 +4,6 @@ import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils"
 
 export const getLatestData = async () => {
     await connectDB()
-    console.log("connect")
     const latestMovies = await movieCollection.aggregate([
         {
             $sort: { rating: -1 }
