@@ -122,6 +122,11 @@ export const event_And_sports_Schema = new Schema({
 
 export const userSchema = new Schema({
     email: {
+        unique: true,
+        type: String,
+        required: [true, "Some Property is missing"]
+    },
+    password: {
         type: String,
         required: [true, "Some Property is missing"]
     },

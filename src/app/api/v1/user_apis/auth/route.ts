@@ -1,24 +1,36 @@
-var jwt = require('jsonwebtoken');
 import { userCollection } from "@/CLient-And-Server-Shared-Files/Collections";
 import { serverError, unathorizeError } from "@/ServerFiles/OnError";
+import { matchPass } from "@/ServerFiles/Utils/Hash";
 import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils";
 import { verifyToken } from "@/ServerFiles/Utils/auth-utils";
 import { NextRequest, NextResponse } from "next/server";
+var jwt = require('jsonwebtoken');
 
 
 // token api
 export const POST = async (req: NextRequest) => {
     try {
         const userInfo = await req.json()
-        const token = jwt.sign({
-            email: userInfo.email,
-        }, process.env.NEXT_PUBLIC_SECRET, { expiresIn: 60 * 60 });
+        await connectDB()
 
-        return new NextResponse(JSON.stringify({ message: "token send successfull" }), {
-            status: 200,
-            headers: { "Set-Cookie": `token=${token}; sameSite=strict; Path=/; httpOnly=true; maxAge=60*60*24` },
-        });
+        // check valid user
+        const userFromDB = await userCollection.findOne({ email: userInfo.email })
+
+        const isPassMatch = matchPass(userInfo.password, userFromDB.password)
+
+        if (userFromDB && isPassMatch) {
+            const token = jwt.sign({
+                email: userInfo.email,
+            }, process.env.NEXT_PUBLIC_SECRET, { expiresIn: 60 * 60 });
+
+            return new NextResponse(JSON.stringify({ message: "SignIn successfull", user: { email: userFromDB.email, role: userFromDB.role } }), {
+                status: 200,
+                headers: { "Set-Cookie": `token=${token}; sameSite=strict; Path=/; httpOnly=true; maxAge=60*60*24` },
+            });
+        }
+        return NextResponse.json({ message: "Email or password incorrect" })
     } catch (error) {
+        console.log(error)
         return serverError(req)
     }
 };

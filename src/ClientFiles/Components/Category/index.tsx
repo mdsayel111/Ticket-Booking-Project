@@ -19,7 +19,7 @@ const CategoryPage = () => {
 
   const fetchData = async () => {
     const data = await axios.get(
-      `/api/v1/public_apis/${category}?date=${date.toString()}`
+      `/api/v1/public_apis/category/${category}?date=${date.toString()}`
     );
     setData(data.data);
   };
@@ -82,7 +82,7 @@ const CategoryPage = () => {
               key={item._id}
               values={{
                 item: JSON.parse(JSON.stringify(item)),
-                path: `/${category}/${item._id}`,
+                path: `/category/${category}/${item._id}`,
               }}
             />
           ))}

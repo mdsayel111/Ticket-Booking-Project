@@ -19,6 +19,8 @@ import Image from "next/image";
 import CommonButton from "../CommonButton/CommonButton";
 import Logo from "../Logo/Logo";
 import Link from "next/link";
+import { useAppDispatch, useAppSelector } from "@/ClientFiles/Hooks/ReduxHook";
+import { setUser } from "@/ClientFiles/Slices/UserSlices";
 
 interface Props {
   /**
@@ -31,14 +33,23 @@ interface Props {
 const drawerWidth = 240;
 const navItems = [
   { title: "Home", path: "/" },
-  { title: "Movies", path: "/movies" },
-  { title: "Events", path: "/events" },
-  { title: "Sports", path: "/sports" },
+  { title: "Movies", path: "/category/movies" },
+  { title: "Events", path: "/category/events" },
+  { title: "Sports", path: "/category/sports" },
 ];
 
 export default function Navbar(props: Props) {
   const { opening } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const dispatch = useAppDispatch();
+  const { userInfo } = useAppSelector((state) => state.user);
+
+  // handle logout function
+  const handleLogOut = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    dispatch(setUser({}));
+  };
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -118,9 +129,18 @@ export default function Navbar(props: Props) {
                 <Button sx={{ color: "#fff" }}>{item.title}</Button>
               </Link>
             ))}
-            <Link href={"/_signup_or_signin"}>
-              <CommonButton value={{ text: "join us" }} />
-            </Link>
+            {userInfo?.email ? (
+              <CommonButton
+                value={{
+                  text: "Log Out",
+                  onClick: handleLogOut,
+                }}
+              />
+            ) : (
+              <Link href={"/signup_or_signin"}>
+                <CommonButton value={{ text: "join us" }} />
+              </Link>
+            )}
           </Box>
         </Toolbar>
       </AppBar>

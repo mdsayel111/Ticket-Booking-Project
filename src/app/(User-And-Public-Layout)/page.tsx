@@ -30,7 +30,7 @@ const page = async () => {
                   key={index}
                   values={{
                     item: JSON.parse(JSON.stringify(item)),
-                    path: `/${item.category}s/${item._id}`,
+                    path: `/category/${item.category}s/${item._id}`,
                   }}
                 />
               ))}

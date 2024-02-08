@@ -7,13 +7,14 @@ const BackgroundImage = ({
   values,
 }: {
   children: ReactNode;
-  values: { background: string; marginTop?: string };
+  values: { background: string; marginTop?: string; height?: string };
 }) => {
-  const { background, marginTop } = values;
+  const { background, marginTop, height } = values;
   return (
     <div
       className="relative banner-image bg-cover flex justify-center items-center flex-col"
       style={{
+        height: height || "80vh",
         background: background,
         backgroundSize: "cover",
         backgroundPosition: "center",
