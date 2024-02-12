@@ -20,12 +20,16 @@ export const verifyToken = async (req: NextRequest) => {
 }
 
 export const verifyHost = async (req: NextRequest) => {
-    const email = await verifyToken(req)
-    const { role } = await userCollection.findOne({ email: email })
-    if (role === "host") {
-        return true
+    try {
+        const email = await verifyToken(req)
+        const { role } = await userCollection.findOne({ email: email })
+        if (role === "host") {
+            return true
+        }
+        return false
+    } catch (error) {
+        return false
     }
-    return false
 }
 
 export const verifyAdmin = async (req: NextRequest) => {

@@ -9,6 +9,7 @@ export const POST = async (req: NextRequest) => {
     try {
         await connectDB()
         const userData = await req.json()
+        console.log(userData)
         const { password } = userData
         const userHashPass = hashPass(password)
         const newUser = { ...userData, password: userHashPass }
@@ -18,7 +19,8 @@ export const POST = async (req: NextRequest) => {
             return NextResponse.json({ message: "user creat successful" });
         }
         return serverError(req)
-    } catch (error) {
+    } catch (error: any) {
+        console.log(error.message)
         return serverError(req)
     }
 };

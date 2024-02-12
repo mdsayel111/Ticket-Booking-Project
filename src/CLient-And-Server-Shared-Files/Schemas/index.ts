@@ -77,10 +77,10 @@ export const event_And_sports_Schema = new Schema({
         type: Date,
         default: Date.now
     },
-    availableTicket: {
-        type: Number,
-        required: [true, "Some Property is missing"]
-    },
+    // availableTicket: {
+    //     type: Number,
+    //     required: [true, "Some Property is missing"]
+    // },
     stats: {
         type: Object,
         default: { ticketBooked: { type: Number, default: 0 }, usefulSession: { type: Number, default: 0 }, talentSpeaker: { type: Number, default: 0 } }
@@ -90,10 +90,10 @@ export const event_And_sports_Schema = new Schema({
         required: [true, "Some Property is missing"]
     },
 
-    sponsor: {
-        type: Object,
-        default: { platinum: { type: Array, default: [] }, silver: { type: Array, default: [] }, gold: { type: Array, default: [] } }
-    },
+    // sponsor: {
+    //     type: Object,
+    //     default: { platinum: { type: Array, default: [] }, silver: { type: Array, default: [] }, gold: { type: Array, default: [] } }
+    // },
     img: {
         type: String,
         required: [true, "Some Property is missing"]
@@ -121,6 +121,10 @@ export const event_And_sports_Schema = new Schema({
 });
 
 export const userSchema = new Schema({
+    name: {
+        type: String,
+        required: [true, "Some Property is missing"]
+    },
     email: {
         unique: true,
         type: String,

@@ -9,7 +9,7 @@ export const getLatestData = async () => {
             $sort: { rating: -1 }
         },
         {
-            $limit: 3
+            $limit: 4
         },
     ])
     const latestEvents = await eventCollection.aggregate([
@@ -17,7 +17,7 @@ export const getLatestData = async () => {
             $sort: { date: -1 }
         },
         {
-            $limit: 3
+            $limit: 4
         },
     ])
     const latestSports = await sportCollection.aggregate([
@@ -25,7 +25,7 @@ export const getLatestData = async () => {
             $sort: { date: -1 }
         },
         {
-            $limit: 3
+            $limit: 4
         },
     ])
     return { latestMovies, latestEvents, latestSports }

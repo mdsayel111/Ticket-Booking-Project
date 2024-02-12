@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
+import Navbar from "@/ClientFiles/Components/Shared/Navbar/Navbar";
+import Footer from "@/ClientFiles/Components/Shared/Footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +30,11 @@ export default function RootLayout({
         style={{ backgroundColor: "var(--primary)" }}
       >
         <StoreProvider>
-          <SetInitialValueReduxState>{children}</SetInitialValueReduxState>
+          <SetInitialValueReduxState>
+            <Navbar />
+            {children}
+            <Footer />
+          </SetInitialValueReduxState>
         </StoreProvider>
         <Toaster />
       </body>

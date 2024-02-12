@@ -23,7 +23,9 @@ export const POST = async (req: NextRequest) => {
                 email: userInfo.email,
             }, process.env.NEXT_PUBLIC_SECRET, { expiresIn: 60 * 60 });
 
-            return new NextResponse(JSON.stringify({ message: "SignIn successfull", user: { email: userFromDB.email, role: userFromDB.role } }), {
+            console.log(userFromDB)
+
+            return new NextResponse(JSON.stringify({ message: "SignIn successfull", user: { name: userFromDB.name, email: userFromDB.email, role: userFromDB.role } }), {
                 status: 200,
                 headers: { "Set-Cookie": `token=${token}; sameSite=strict; Path=/; httpOnly=true; maxAge=60*60*24` },
             });
