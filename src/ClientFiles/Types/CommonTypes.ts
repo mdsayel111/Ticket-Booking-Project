@@ -1,4 +1,3 @@
-import { event_And_sports_Schema } from './../../CLient-And-Server-Shared-Files/Schemas/index';
 export type movie = {
     _id: string,
     title: string,
@@ -17,7 +16,7 @@ export type movie = {
     location: string
 }
 export type event_And_Sports = {
-    _id?: string,
+    _id: string,
     title: string,
     description: string,
     date: Date,
@@ -35,4 +34,9 @@ export type event_And_Sports = {
     hostEmail: string,
     price: number,
     location: string
+}
+
+export type categoryTitleAndLinkArr = {
+    title: string,
+    path: string
 }

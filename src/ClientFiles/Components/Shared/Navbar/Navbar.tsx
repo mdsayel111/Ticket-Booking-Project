@@ -34,26 +34,6 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = [
-  { title: "Home", path: "/" },
-  { title: "Movies", path: "/category/movies" },
-  { title: "Events", path: "/category/events" },
-  { title: "Sports", path: "/category/sports" },
-];
-const dashboardItems = [
-  { title: "Add Movie", path: "/" },
-  { title: "Movies", path: "/category/movies" },
-  { title: "Events", path: "/category/events" },
-  { title: "Sports", path: "/category/sports" },
-];
-
-const hostItems = [
-  { title: "Add Movie", path: "/host/movies/add_movie" },
-  { title: "Add Event", path: "/host/events/add_event" },
-  { title: "Add Sports", path: "/host/sports/add_sport" },
-];
-
-const adminItems = [];
 
 export default function Navbar(props: Props) {
   const { opening } = props;
@@ -63,6 +43,32 @@ export default function Navbar(props: Props) {
   const [isDashboardNav, setIsDashboardNav] = React.useState(false);
 
   console.log(userInfo);
+
+  // navbar items title and link array
+  const navItems = [
+    { title: "Home", path: "/" },
+    { title: "Movies", path: "/category/movies" },
+    { title: "Events", path: "/category/events" },
+    { title: "Sports", path: "/category/sports" },
+  ];
+  const dashboardItems = [
+    { title: "Add Movie", path: "/" },
+    { title: "Movies", path: "/category/movies" },
+    { title: "Events", path: "/category/events" },
+    { title: "Sports", path: "/category/sports" },
+  ];
+
+  const hostItems = [
+    {
+      title: "Added Items",
+      path: `/host/added_items?email=${userInfo.email}`,
+    },
+    { title: "Add Movie", path: "/host/add/movies/add_movie" },
+    { title: "Add Event", path: "/host/add/events/add_event" },
+    { title: "Add Sports", path: "/host/add/sports/add_sport" },
+  ];
+
+  const adminItems = [];
 
   // handle logout function
   const handleLogOut = () => {

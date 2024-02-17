@@ -1,9 +1,9 @@
+"use client";
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const instance = axios.create({
-});
+const instance = axios.create({});
 
 const useAxiosSecure = () => {
   const router = useRouter();
@@ -16,7 +16,7 @@ const useAxiosSecure = () => {
         return response;
       },
       function (error) {
-        console.log(error)
+        console.log(error);
         if (error.response.status === 401) {
           router.push("/signup_or_signin");
         }

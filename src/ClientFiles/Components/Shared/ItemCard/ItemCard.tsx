@@ -5,15 +5,22 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import "./ItemCard.css";
 import Link from "next/link";
-import NoSSR from "@/ClientFiles/Wraper/NoSSR";
-var moment = require('moment');
+import { MouseEventHandler } from "react";
+import NoSSR from "../../Wraper/NoSSR";
+import UpdateAndDeleteBtnGroup from "../UpdateAndDeleteBtnGroup/UpdateAndDeleteBtnGroup";
+import "./ItemCard.css";
+var moment = require("moment");
 
 const ItemCard = ({
   values,
+  callFromHost,
+  updatePath,
 }: {
   values: { item: movie | event_And_Sports; path: string };
+  callFromHost?: boolean;
+  handleDelete?: MouseEventHandler;
+  updatePath?: string;
 }) => {
   const { item, path } = values;
   return (
@@ -24,8 +31,18 @@ const ItemCard = ({
             sx={{
               maxWidth: 320,
               backgroundColor: "#032055",
+              position: "relative",
             }}
           >
+            {callFromHost ? (
+              <UpdateAndDeleteBtnGroup
+                path={updatePath as string}
+                category={`${item.category}s`}
+                id={item._id}
+              />
+            ) : (
+              <></>
+            )}
             <div className="overflow-hidden">
               <CardMedia
                 sx={{
@@ -54,7 +71,9 @@ const ItemCard = ({
                 >
                   {item.title}
                 </Typography>
-                <span className="text-white">Date : {moment(item.date).format('DD/MM/YYYY')}</span>
+                <span className="text-white">
+                  Date : {moment(item.date).format("DD/MM/YYYY")}
+                </span>
               </div>
             </CardContent>
             <CardActions>

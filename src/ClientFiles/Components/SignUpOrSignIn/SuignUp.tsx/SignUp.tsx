@@ -45,6 +45,7 @@ export default function SignUp({
         handleSubmit: handleSubmit,
         icon: <FaLock />,
         title: "Sign Up",
+        btnText: "sign up"
       }}
     >
       <Grid container spacing={2} sx={{ margin: "0 auto" }}>

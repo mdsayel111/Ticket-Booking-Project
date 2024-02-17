@@ -3,6 +3,7 @@ import React, { ReactNode } from "react";
 const Input = ({
   values,
   required,
+  maxLength,
 }: {
   values: {
     title: string;
@@ -11,10 +12,12 @@ const Input = ({
     icon?: ReactNode;
     placeholder?: string;
     className?: string;
+    value?: any;
   };
-  required: boolean;
+  required?: boolean;
+  maxLength?: number;
 }) => {
-  const { title, type, name, icon, placeholder, className } = values;
+  const { title, type, name, icon, placeholder, className, value } = values;
   return (
     <div className={className}>
       <label
@@ -30,12 +33,13 @@ const Input = ({
           </span>
         )}
         <input
+          maxLength={maxLength}
           required={required}
           type={type}
           name={name}
           id="website-admin"
           className="rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-[#4C5884] dark:text-[#B4B9C3] dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder={placeholder}
+          placeholder={value ? value : placeholder}
           style={{
             borderStartStartRadius: `${icon || "0.5rem"}`,
             borderEndStartRadius: `${icon || "0.5rem"}`,

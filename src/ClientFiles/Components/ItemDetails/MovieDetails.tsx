@@ -10,7 +10,7 @@ import Container from "../Shared/Container/Container";
 import CountDawn from "../Shared/CountDawn/CountDawn";
 import LogoGroup from "../Shared/LogoGroup/LogoGroup";
 import BasicTabs from "./DetailsTabs/DetailsTabs";
-import NoSSR from "@/ClientFiles/Wraper/NoSSR";
+import NoSSR from "../Wraper/NoSSR";
 
 const MovieDetails = ({ values }: { values: { item: movie } }) => {
   const { item } = values;

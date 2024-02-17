@@ -1,5 +1,5 @@
 import AddMovie from "@/ClientFiles/Components/AddMovie/AddMovie";
-import AddMovieOrEvent from "@/ClientFiles/Components/AddMovieOrEvent/AddMovieOrEvent";
+import AddEventOrSports from "@/ClientFiles/Components/AddMovieOrEvent/AddEventOrSportst";
 
 const page = ({ params }: { params: { category: string } }) => {
   const { category } = params;
@@ -7,7 +7,7 @@ const page = ({ params }: { params: { category: string } }) => {
   return (
     <div className="mb-40">
       {category !== "movies" ? (
-        <AddMovieOrEvent category={category} />
+        <AddEventOrSports category={category} />
       ) : (
         <AddMovie />
       )}

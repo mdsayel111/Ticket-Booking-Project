@@ -1,65 +1,32 @@
 "use client";
-import { useAppSelector } from "@/ClientFiles/Hooks/ReduxHook";
-import useAxiosSecure from "@/ClientFiles/Hooks/useAxiosSecure";
-import { uploadImage } from "@/ClientFiles/Utils/ImageUpload";
+
+import React, { FormEventHandler } from "react";
+import BackgroundImage from "../BackgroundImage/BackgroundImage";
+import Form from "../Form/Form";
 import { Grid } from "@mui/material";
-import axios from "axios";
-import { FormEvent } from "react";
-import { MdMovie } from "react-icons/md";
-import BackgroundImage from "../Shared/BackgroundImage/BackgroundImage";
-import Form from "../Shared/Form/Form";
-import CheckBox from "../Shared/Input/CheckBox";
-import FileInput from "../Shared/Input/FileInput";
-import Input from "../Shared/Input/Input";
-import TextArea from "../Shared/Input/TextArea";
-import toast from "react-hot-toast";
-import { MdSportsBaseball } from "react-icons/md";
-import { MdEmojiEvents } from "react-icons/md";
+import Input from "../Input/Input";
+import FileInput from "../Input/FileInput";
+import TextArea from "../Input/TextArea";
+import { MdEmojiEvents, MdSportsBaseball } from "react-icons/md";
+import { useParams } from "next/navigation";
 
-const AddMovieOrEvent = ({ category }: { category: string }) => {
-  const { userInfo } = useAppSelector((state: any) => state.user);
-  const axiosSecure = useAxiosSecure();
-
-  const handleAddMovie = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form: any = e.target;
-    const name = form.name.value;
-    const price = form.price.value;
-    const talentSpeaker = form.talentSpeaker.value;
-    const usefulSession = form.usefulSession.value;
-    const location = form.location.value;
-    const description = form.description.value;
-    const thumbnailImg = form.thumbnailImg.files[0];
-    const bgImg = form.bgImg.files[0];
-
-    const thumbnailImgUrl = await uploadImage(thumbnailImg);
-    const bgImgUrl = await uploadImage(bgImg);
-
-    // creat movie object
-    const eventOrSportsObj = {
-      title: name,
-      price,
-      location,
-      description,
-      img: thumbnailImgUrl,
-      bgImg: bgImgUrl,
-      stats: {
-        talentSpeaker,
-        usefulSession,
-      },
-      category,
-      hostName: userInfo.name,
-      hostEmail: userInfo.email,
-    };
-
-    // add movie
-    const result = await axiosSecure.post(
-      `/api/v1/host_apis/category/events?email=${userInfo.email}`,
-      eventOrSportsObj
-    );
-    toast.success(result.data.message);
-    form.reset();
+const EventOrSportsForm = ({
+  handleAddEventOrSports,
+  values,
+  callFromUpdatePage,
+}: {
+  callFromUpdatePage?: boolean;
+  handleAddEventOrSports: FormEventHandler<HTMLFormElement>;
+  values?: {
+    name: string;
+    price: number;
+    talentSpeaker: number;
+    usefulSession: number;
+    location: string;
+    description: string;
   };
+}) => {
+  const { category } = useParams();
   return (
     <div className="w-full h-[100vh] my-[70px]">
       <BackgroundImage
@@ -71,15 +38,27 @@ const AddMovieOrEvent = ({ category }: { category: string }) => {
         <div className="relative z-20 w-[90%]">
           <Form
             values={{
-              handleSubmit: handleAddMovie,
+              handleSubmit: handleAddEventOrSports,
               icon:
                 category === "events" ? (
                   <MdEmojiEvents />
                 ) : (
                   <MdSportsBaseball />
                 ),
-              title: category === "events" ? "Add Event" : "Add Sport",
-              btnText: category === "events" ? "Add Event" : "Add Sport",
+              title: callFromUpdatePage
+                ? category === "events"
+                  ? "Update Event"
+                  : "Update Sport"
+                : category === "events"
+                ? "Add Event"
+                : "Add Sport",
+              btnText: callFromUpdatePage
+                ? category === "events"
+                  ? "Update Event"
+                  : "Update Sport"
+                : category === "events"
+                ? "Add Event"
+                : "Add Sport",
             }}
           >
             {
@@ -91,23 +70,16 @@ const AddMovieOrEvent = ({ category }: { category: string }) => {
                 <div className="grid grid-cols-2 gap-4 w-full">
                   <Input
                     required={true}
+                    maxLength={15}
                     values={{
                       name: "name",
                       title: "Name",
                       type: "text",
                       placeholder: "Name",
+                      value: values && values.name,
                     }}
                   />
                   <div>
-                    {/* <Input
-                      required={true}
-                      values={{
-                        name: "availableTicket",
-                        title: "Available Ticket",
-                        type: "number",
-                        placeholder: "3600 s",
-                      }}
-                    /> */}
                     <Input
                       required={true}
                       values={{
@@ -115,6 +87,7 @@ const AddMovieOrEvent = ({ category }: { category: string }) => {
                         title: "Price",
                         type: "number",
                         placeholder: "Price",
+                        value: values && values.price,
                       }}
                     />
                   </div>
@@ -127,6 +100,7 @@ const AddMovieOrEvent = ({ category }: { category: string }) => {
                         type: "number",
                         placeholder: "Talent Speaker",
                         className: "w-1/2",
+                        value: values && values.talentSpeaker,
                       }}
                     />
                     <Input
@@ -137,13 +111,14 @@ const AddMovieOrEvent = ({ category }: { category: string }) => {
                         type: "number",
                         placeholder: "Useful Session",
                         className: "w-1/2",
+                        value: values && values.usefulSession,
                       }}
                     />
                   </div>
                   <div className="col-span-2 flex gap-4">
                     <FileInput
                       className="w-1/2"
-                      required={true}
+                      required={callFromUpdatePage ? false : true}
                       values={{
                         multiple: false,
                         title: "Thumbnail Img",
@@ -152,7 +127,7 @@ const AddMovieOrEvent = ({ category }: { category: string }) => {
                     />
                     <FileInput
                       className="w-1/2"
-                      required={true}
+                      required={callFromUpdatePage ? false : true}
                       values={{
                         multiple: false,
                         title: "Background Img",
@@ -168,13 +143,18 @@ const AddMovieOrEvent = ({ category }: { category: string }) => {
                       type: "text",
                       placeholder: "Location",
                       className: "col-span-2",
+                      value: values && values.location,
                     }}
                   />
                 </div>
                 <div className="w-full">
                   <TextArea
                     required={true}
-                    values={{ name: "description", title: "Description" }}
+                    values={{
+                      name: "description",
+                      title: "Description",
+                      value: values && values.description,
+                    }}
                   />
                 </div>
               </Grid>
@@ -186,4 +166,4 @@ const AddMovieOrEvent = ({ category }: { category: string }) => {
   );
 };
 
-export default AddMovieOrEvent;
+export default EventOrSportsForm;

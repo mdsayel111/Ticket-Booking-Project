@@ -65,3 +65,27 @@ export const getData = async (params: any, searchParams?: any) => {
         return { multiData: allData };
     }
 }
+
+export const getAddedItemsData = async (searchParams: any, params?: any) => {
+    // const id = searchParams && searchParams.id
+    const { email } = searchParams
+
+    await connectDB()
+    const movies = await movieCollection.find({ hostEmail: email })
+    const events = await eventCollection.find({ hostEmail: email })
+    const sports = await sportCollection.find({ hostEmail: email })
+    return { movies, events, sports }
+}
+
+export const getAddedSingleItemsData = async (searchParams: any, params?: any) => {
+    const { id } = params
+    const { email } = searchParams
+
+    console.log(email, id)
+
+    const dataObtainCollection = await getCollection(params)
+
+    await connectDB()
+    const singleData = await dataObtainCollection.findOne({ hostEmail: email, _id: id })
+    return { singleData }
+}

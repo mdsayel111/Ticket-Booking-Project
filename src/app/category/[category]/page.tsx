@@ -1,4 +1,4 @@
-import CategoryPage from "@/ClientFiles/Components/Category";
+import SpecificCategoryItems from "@/ClientFiles/Components/Shared/SpecificCategoryItems";
 
 const page = async ({
   params,
@@ -6,9 +6,7 @@ const page = async ({
   params: { category: string };
   searchParams: Record<string, string>;
 }) => {
-  return (
-    <CategoryPage />
-  );
+  return <SpecificCategoryItems />;
 };
 
 export default page;

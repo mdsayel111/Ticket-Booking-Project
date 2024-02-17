@@ -4,17 +4,21 @@ import { TypeAnimation } from "react-type-animation";
 
 const TextAnimation = ({
   value,
+  className,
 }: {
   value: {
-    staticText: string;
+    staticText?: string;
     sameText: string;
     dainamicText: string[];
-    subTitle: string;
+    subTitle?: string;
   };
+  className?: string;
 }) => {
   const { staticText, dainamicText, sameText, subTitle } = value;
   return (
-    <div className="flex flex-col gap-4 text-center absolute z-10">
+    <div
+      className={`flex flex-col gap-4 text-center absolute z-10 ${className}`}
+    >
       <span className="text-[32px] font-bold text-white">{staticText}</span>
       <div className="flex flex-col md:flex-row gap-2 justify-center items-center">
         <span className="text-[32px] font-bold text-white">{sameText}</span>

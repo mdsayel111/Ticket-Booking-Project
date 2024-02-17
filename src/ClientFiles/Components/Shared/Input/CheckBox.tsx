@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 const CheckBox = ({
   values,
 }: {
-  values: { title: string; name: string; value: string };
+  values: { title: string; name: string; cheked?: boolean };
 }) => {
-  const { title, name, value } = values;
+  const [value, setValue] = useState(false);
+  const { title, name, cheked } = values;
   return (
     <div className="flex items-center ps-3">
       <input
+        defaultChecked={cheked}
         name={name}
         id="vue-checkbox"
         type="checkbox"
