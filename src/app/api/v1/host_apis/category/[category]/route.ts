@@ -65,7 +65,7 @@ export const DELETE = async (req: NextRequest, { params }: any) => {
             await connectDB()
             const result = await dataObtainCollections.deleteOne({ _id: id })
             if (result.deletedCount > 0) {
-                return NextResponse.json({ message: `${category.slice(0, category.length - 1)} update successful` })
+                return NextResponse.json({ message: `${category.slice(0, category.length - 1)} deleted successful` })
             }
             return serverError(req)
         }

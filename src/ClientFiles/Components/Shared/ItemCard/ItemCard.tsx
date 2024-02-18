@@ -25,63 +25,65 @@ const ItemCard = ({
   const { item, path } = values;
   return (
     <NoSSR>
-      <Link href={path}>
-        <div id="card">
-          <Card
-            sx={{
-              maxWidth: 320,
-              backgroundColor: "#032055",
-              position: "relative",
-            }}
-          >
-            {callFromHost ? (
-              <UpdateAndDeleteBtnGroup
-                path={updatePath as string}
-                category={`${item.category}s`}
-                id={item._id}
-              />
-            ) : (
-              <></>
-            )}
-            <div className="overflow-hidden">
-              <CardMedia
-                sx={{
-                  height: 320,
-                  width: 320,
-                  margin: "0 auto",
-                  backgroundPosition: "top center",
-                }}
-                image={`${item.img}`}
-                title="green iguana"
-              />
-            </div>
-            <CardContent>
-              <div>
-                <Typography
-                  gutterBottom
-                  variant="h5"
-                  component="div"
+      <div className="relative max-w-[320px]">
+        <Link href={path}>
+          <div id="card">
+            <Card
+              sx={{
+                maxWidth: 320,
+                backgroundColor: "#032055",
+                position: "relative",
+              }}
+            >
+              <div className="overflow-hidden">
+                <CardMedia
                   sx={{
-                    color: "white",
-                    fontWeight: "500",
-                    borderBottom: "#11326f dashed",
-                    borderBottomWidth: "1px",
-                    paddingBottom: "20px",
+                    height: 320,
+                    width: 320,
+                    margin: "0 auto",
+                    backgroundPosition: "top center",
                   }}
-                >
-                  {item.title}
-                </Typography>
-                <span className="text-white">
-                  Date : {moment(item.date).format("DD/MM/YYYY")}
-                </span>
+                  image={`${item.img}`}
+                  title="green iguana"
+                />
               </div>
-            </CardContent>
-            <CardActions>
-              <p className="text-white">{item.location}</p>
-            </CardActions>
-          </Card>
-        </div>
-      </Link>
+              <CardContent>
+                <div>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{
+                      color: "white",
+                      fontWeight: "500",
+                      borderBottom: "#11326f dashed",
+                      borderBottomWidth: "1px",
+                      paddingBottom: "20px",
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+                  <span className="text-white">
+                    Date : {moment(item.date).format("DD/MM/YYYY")}
+                  </span>
+                </div>
+              </CardContent>
+              <CardActions>
+                <p className="text-white">{item.location}</p>
+              </CardActions>
+            </Card>
+          </div>
+        </Link>
+        {callFromHost ? (
+          <UpdateAndDeleteBtnGroup
+            path={updatePath as string}
+            category={`${item.category}s`}
+            id={item._id}
+          />
+        ) : (
+          <></>
+        )}
+      </div>
     </NoSSR>
   );
 };

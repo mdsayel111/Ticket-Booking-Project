@@ -43,7 +43,7 @@ const AddEventOrSports = ({
         talentSpeaker,
         usefulSession,
       },
-      category,
+      category: category.slice(0, category.length - 1),
       hostName: userInfo.name,
       hostEmail: userInfo.email,
     };
