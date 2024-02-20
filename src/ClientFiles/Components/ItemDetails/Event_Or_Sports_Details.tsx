@@ -4,6 +4,7 @@ import BackgroundImage from "../Shared/BackgroundImage/BackgroundImage";
 import CommonButton from "../Shared/CommonButton/CommonButton";
 import Container from "../Shared/Container/Container";
 import CountDawn from "../Shared/CountDawn/CountDawn";
+import BookingBtn from "@/ClientFiles/HOC/BookingBtn";
 
 const Event_Or_Sports_Details = ({
   values,
@@ -28,7 +29,15 @@ const Event_Or_Sports_Details = ({
               </h2>
               <p className="text-white">{item.description}</p>
               <div>
-                <CommonButton value={{ text: "Book Ticket " }} />
+                {/* call HOC for booking btn with onClick function */}
+                <BookingBtn
+                  item={item}
+                  ButtonComponent={CommonButton}
+                  value={{
+                    text: "Book Ticket",
+                    className: "w-[140px]",
+                  }}
+                />
               </div>
             </div>
             <div

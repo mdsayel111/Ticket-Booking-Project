@@ -21,7 +21,6 @@ export const counterSlice = createSlice({
             type: string;
         }) => {
             state.userInfo = action.payload
-            console.log(state)
         },
         // Use the PayloadAction type to declare the contents of `action.payload`
         // incrementByAmount: (state, action: PayloadAction<number>) => {

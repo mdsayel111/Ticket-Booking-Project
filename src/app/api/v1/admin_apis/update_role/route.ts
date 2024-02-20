@@ -1,19 +1,20 @@
 import { userCollection } from "@/CLient-And-Server-Shared-Files/Collections"
+import { verifyAdmin } from "@/CLient-And-Server-Shared-Files/Utils/auth-utils"
 import { serverError, unathorizeError } from "@/ServerFiles/OnError"
 import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils"
 import { NextRequest, NextResponse } from "next/server"
-import { addFeild } from "../../../../../../addFeild"
-import { verifyAdmin } from "@/ServerFiles/Utils/auth-utils"
 
 export const PATCH = async (req: NextRequest) => {
     try {
         const isAdmin = await verifyAdmin(req)
+        const { role } = await req.json()
+        console.log(role)
         if (isAdmin) {
             const { searchParams } = new URL(req.url)
             const id = searchParams.get("id")
             const updateDoc = {
                 $set: {
-                    role: "host",
+                    role,
                     reqRole: "none",
                     status: "none"
                 }
@@ -27,6 +28,7 @@ export const PATCH = async (req: NextRequest) => {
         }
         return unathorizeError(req)
     } catch (error) {
+        console.log(error.message)
         return serverError(req)
     }
 }

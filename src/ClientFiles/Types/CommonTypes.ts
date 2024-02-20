@@ -1,3 +1,5 @@
+import { MouseEventHandler } from "react"
+
 export type movie = {
     _id: string,
     title: string,
@@ -39,4 +41,21 @@ export type event_And_Sports = {
 export type categoryTitleAndLinkArr = {
     title: string,
     path: string
+}
+
+export type commonBtnProps = {
+    value: {
+        text: string,
+        className?: string,
+        onClick?: MouseEventHandler<HTMLButtonElement>;
+    }
+}
+
+export type user = {
+    _id: string,
+    name: string,
+    email: string,
+    role: string,
+    status: string,
+    reqRole: string
 }

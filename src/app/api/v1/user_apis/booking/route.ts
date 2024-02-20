@@ -1,7 +1,7 @@
 import { bookingCollection } from "@/CLient-And-Server-Shared-Files/Collections";
+import { verifyToken } from "@/CLient-And-Server-Shared-Files/Utils/auth-utils";
 import { serverError, unathorizeError } from "@/ServerFiles/OnError";
 import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils";
-import { verifyToken } from "@/ServerFiles/Utils/auth-utils";
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
@@ -9,7 +9,8 @@ export const POST = async (req: NextRequest) => {
         const isVerify = await verifyToken(req)
         if (isVerify) {
             const bookingData = await req.json()
-            const newBooking = await bookingCollection(bookingData)
+            console.log(bookingData)
+            const newBooking = await bookingCollection(bookingData, true)
             await connectDB()
             const result = await newBooking.save()
             if (result._id) {
@@ -19,6 +20,7 @@ export const POST = async (req: NextRequest) => {
         }
         return unathorizeError(req)
     } catch (error: any) {
+        console.log(error.message)
         return serverError(req)
     }
 };

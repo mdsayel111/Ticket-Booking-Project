@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { FormEvent } from "react";
 import MovieForm from "../Shared/MovieForm/MovieForm";
 import { uploadImage } from "@/ClientFiles/Utils/ImageUpload";
@@ -14,6 +14,7 @@ const UpdateMovie = ({ item }: { item: movie }) => {
   const handleUpdateMovie = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form: any = e.target;
+    // set old value if the user does not provide input otherwise set user value link
     const name = form.name.value || item.title;
     const duration = form.duration.value || item.duration;
     const price = form.price.value || item.price;
@@ -23,6 +24,7 @@ const UpdateMovie = ({ item }: { item: movie }) => {
     const bgImg = form.bgImg.files[0];
     const sliderImg = [...form.sliderImg.files];
 
+    // set old image link if the user does not provide input otherwise upload imag on uimgbb and set link
     const thumbnailImgUrl =
       form.thumbnailImg.files.length < 1
         ? item.img
@@ -55,9 +57,7 @@ const UpdateMovie = ({ item }: { item: movie }) => {
       hostEmail: userInfo.email,
     };
 
-    console.log(updatedMovieObj)
-
-    // add movie
+    // update movie
     const result = await axiosSecure.patch(
       `/api/v1/host_apis/category/movies?email=${userInfo.email}&id=${item._id}`,
       updatedMovieObj
@@ -70,6 +70,7 @@ const UpdateMovie = ({ item }: { item: movie }) => {
       <MovieForm
         callFromUpdatePage={true}
         handleSubmit={handleUpdateMovie}
+        // passing value for set initial value of movie form
         values={{
           name: item.title,
           description: item.description,

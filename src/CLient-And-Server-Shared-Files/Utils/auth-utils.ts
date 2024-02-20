@@ -1,11 +1,12 @@
 const jwt = require('jsonwebtoken');
 import { NextRequest } from "next/server";
-import { userCollection } from "../../CLient-And-Server-Shared-Files/Collections";
+import { userCollection } from "../Collections";
 
 export const verifyToken = async (req: NextRequest) => {
     const { searchParams } = new URL(req.url)
     const email = searchParams.get("email")
     const token = req.cookies.get("token")?.value
+
     if (token) {
         try {
             const decoded = await jwt.verify(token, process.env.NEXT_PUBLIC_SECRET)

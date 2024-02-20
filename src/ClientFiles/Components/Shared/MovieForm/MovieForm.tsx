@@ -37,6 +37,7 @@ const MovieForm = ({
             values={{
               handleSubmit: handleSubmit,
               icon: <MdMovie />,
+              // change btn text if copmonent call from user page
               title: callFromUpdatePage ? "Update Movie" : "Add Movie",
               btnText: callFromUpdatePage ? "Update Movie" : "Add Movie",
             }}
@@ -56,6 +57,7 @@ const MovieForm = ({
                       title: "Name",
                       type: "text",
                       placeholder: "Name",
+                      // set initial value of input if value exist
                       value: values && values.name,
                     }}
                   />
@@ -67,6 +69,7 @@ const MovieForm = ({
                         title: "Duration",
                         type: "number",
                         placeholder: "3600 s",
+                        // set initial value of input if value exist
                         value: values && values.duration,
                       }}
                     />
@@ -77,6 +80,7 @@ const MovieForm = ({
                         title: "Price",
                         type: "number",
                         placeholder: "Price",
+                        // set initial value of input if value exist
                         value: values && values.price,
                       }}
                     />
@@ -89,6 +93,7 @@ const MovieForm = ({
                       type: "text",
                       placeholder: "Location",
                       className: "col-span-2",
+                      // set initial value of input if value exist
                       value: values && values.location,
                     }}
                   />
@@ -102,6 +107,7 @@ const MovieForm = ({
                           values={{
                             name: "english",
                             title: "English",
+                            // set cheked value of input if value exist
                             cheked:
                               callFromUpdatePage &&
                               values?.language.includes("English"),
@@ -113,6 +119,7 @@ const MovieForm = ({
                           values={{
                             name: "hindi",
                             title: "Hindi",
+                            // set cheked value of input if value exist
                             cheked:
                               callFromUpdatePage &&
                               values?.language.includes("Hindi"),
@@ -124,6 +131,7 @@ const MovieForm = ({
                           values={{
                             name: "bengali",
                             title: "Bengali",
+                            // set cheked value of input if value exist
                             cheked:
                               callFromUpdatePage &&
                               values?.language.includes("Bengali"),
@@ -162,6 +170,7 @@ const MovieForm = ({
                 <div className="w-full">
                   <TextArea
                     required={true}
+                    // set initial value of input if value exist
                     values={{
                       name: "description",
                       title: "Description",

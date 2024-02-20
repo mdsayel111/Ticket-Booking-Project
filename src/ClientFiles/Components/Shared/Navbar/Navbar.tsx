@@ -42,14 +42,13 @@ export default function Navbar(props: Props) {
   const { userInfo } = useAppSelector((state) => state.user);
   const [isDashboardNav, setIsDashboardNav] = React.useState(false);
 
-  console.log(userInfo);
-
   // navbar items title and link array
   const navItems = [
     { title: "Home", path: "/" },
     { title: "Movies", path: "/category/movies" },
     { title: "Events", path: "/category/events" },
     { title: "Sports", path: "/category/sports" },
+    { title: "Bookings", path: `/bookings/${userInfo.email}` },
   ];
   const dashboardItems = [
     { title: "Add Movie", path: "/" },
@@ -68,7 +67,7 @@ export default function Navbar(props: Props) {
     { title: "Add Sports", path: "/host/add/sports/add_sport" },
   ];
 
-  const adminItems = [];
+  const adminItems = [{ title: "Users", path: "/admin/users" }];
 
   // handle logout function
   const handleLogOut = () => {
@@ -79,7 +78,6 @@ export default function Navbar(props: Props) {
 
   const handleDrawerToggle = (e: any) => {
     setMobileOpen((prevState) => !prevState);
-    console.log(e.target);
   };
 
   const handleDashboardNavToggole = () => {

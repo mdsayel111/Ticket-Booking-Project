@@ -1,5 +1,6 @@
-import { eventCollection, movieCollection, sportCollection } from "@/CLient-And-Server-Shared-Files/Collections"
+import { bookingCollection, eventCollection, movieCollection, sportCollection, userCollection } from "@/CLient-And-Server-Shared-Files/Collections"
 import { getCollection } from "@/CLient-And-Server-Shared-Files/Utils/Email"
+import { verifyAdmin } from "@/CLient-And-Server-Shared-Files/Utils/auth-utils"
 import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils"
 
 export const getLatestData = async () => {
@@ -88,4 +89,31 @@ export const getAddedSingleItemsData = async (searchParams: any, params?: any) =
     await connectDB()
     const singleData = await dataObtainCollection.findOne({ hostEmail: email, _id: id })
     return { singleData }
+}
+
+export const getBookingsData = async (params: { email: string }) => {
+    const { email } = params
+    await connectDB()
+    const bookingData = await bookingCollection.find({ userEmail: email })
+    return { bookingData }
+}
+
+export const getUserData = async (searchParams: { status: string }) => {
+    try {
+        // const isAdmin = await verifyAdmin(req)
+        // if (isAdmin) {
+        // const { searchParams } = new URL(req.url)
+        const status = searchParams.status
+        await connectDB()
+        if (status) {
+            const muliUser = await userCollection.find({ status })
+            return { muliUser }
+        }
+        const multiUser = await userCollection.find({})
+        return { multiUser }
+        // }
+        // return unathorizeError(req)
+    } catch (error) {
+        // return serverError(req)
+    }
 }

@@ -1,8 +1,8 @@
 import { userCollection } from "@/CLient-And-Server-Shared-Files/Collections";
+import { verifyToken } from "@/CLient-And-Server-Shared-Files/Utils/auth-utils";
 import { serverError, unathorizeError } from "@/ServerFiles/OnError";
 import { matchPass } from "@/ServerFiles/Utils/Hash";
 import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils";
-import { verifyToken } from "@/ServerFiles/Utils/auth-utils";
 import { NextRequest, NextResponse } from "next/server";
 var jwt = require('jsonwebtoken');
 

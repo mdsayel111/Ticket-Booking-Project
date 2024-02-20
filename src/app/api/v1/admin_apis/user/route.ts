@@ -1,7 +1,7 @@
 import { userCollection } from "@/CLient-And-Server-Shared-Files/Collections"
+import { verifyAdmin } from "@/CLient-And-Server-Shared-Files/Utils/auth-utils"
 import { serverError, unathorizeError } from "@/ServerFiles/OnError"
 import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils"
-import { verifyAdmin } from "@/ServerFiles/Utils/auth-utils"
 import { NextRequest, NextResponse } from "next/server"
 
 export const GET = async (req: NextRequest) => {

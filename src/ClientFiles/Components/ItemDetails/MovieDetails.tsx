@@ -3,20 +3,19 @@ import moment from "moment";
 import Image from "next/image";
 import { FaCalendarAlt, FaStopwatch } from "react-icons/fa";
 import BackgroundImage from "../Shared/BackgroundImage/BackgroundImage";
-
 import { FcRating } from "react-icons/fc";
 import CommonButton from "../Shared/CommonButton/CommonButton";
 import Container from "../Shared/Container/Container";
 import CountDawn from "../Shared/CountDawn/CountDawn";
 import LogoGroup from "../Shared/LogoGroup/LogoGroup";
-import BasicTabs from "./DetailsTabs/DetailsTabs";
 import NoSSR from "../Wraper/NoSSR";
+import BasicTabs from "./DetailsTabs/DetailsTabs";
+import BookingBtn from "@/ClientFiles/HOC/BookingBtn";
 
 const MovieDetails = ({ values }: { values: { item: movie } }) => {
   const { item } = values;
 
   //   make Duration string
-
   function customDuration(duration: moment.Duration): string {
     const hours: number = Math.floor(duration.asHours());
     const minutes: number = Math.floor(duration.asMinutes()) % 60;
@@ -40,7 +39,7 @@ const MovieDetails = ({ values }: { values: { item: movie } }) => {
   }
 
   const duration: moment.Duration = moment.duration(item.duration, "seconds");
-  const formattedDuration: string = customDuration(duration);
+  const formatedDuration: string = customDuration(duration);
 
   return (
     <div>
@@ -71,7 +70,7 @@ const MovieDetails = ({ values }: { values: { item: movie } }) => {
             </p>
             <p className="text-white flex items-center gap-2">
               <FaStopwatch />
-              {formattedDuration}
+              {formatedDuration}
             </p>
           </div>
           <div>
@@ -143,8 +142,14 @@ const MovieDetails = ({ values }: { values: { item: movie } }) => {
             <p>Rating</p>
           </div>
           <div className="mr-8">
-            <CommonButton
-              value={{ text: "Book Ticket", className: "w-[140px]" }}
+            {/* call HOC for booking btn with onClick function */}
+            <BookingBtn
+              item={item}
+              ButtonComponent={CommonButton}
+              value={{
+                text: "Book Ticket",
+                className: "w-[140px]",
+              }}
             />
           </div>
         </div>

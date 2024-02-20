@@ -45,6 +45,7 @@ const EventOrSportsForm = ({
                 ) : (
                   <MdSportsBaseball />
                 ),
+              // change btn text if copmonent call from user page
               title: callFromUpdatePage
                 ? category === "events"
                   ? "Update Event"
@@ -76,6 +77,7 @@ const EventOrSportsForm = ({
                       title: "Name",
                       type: "text",
                       placeholder: "Name",
+                      // set initial value of input if value exist
                       value: values && values.name,
                     }}
                   />
@@ -87,6 +89,7 @@ const EventOrSportsForm = ({
                         title: "Price",
                         type: "number",
                         placeholder: "Price",
+                        // set initial value of input if value exist
                         value: values && values.price,
                       }}
                     />
@@ -100,6 +103,7 @@ const EventOrSportsForm = ({
                         type: "number",
                         placeholder: "Talent Speaker",
                         className: "w-1/2",
+                        // set initial value of input if value exist
                         value: values && values.talentSpeaker,
                       }}
                     />
@@ -111,6 +115,7 @@ const EventOrSportsForm = ({
                         type: "number",
                         placeholder: "Useful Session",
                         className: "w-1/2",
+                        // set initial value of input if value exist
                         value: values && values.usefulSession,
                       }}
                     />
@@ -118,6 +123,7 @@ const EventOrSportsForm = ({
                   <div className="col-span-2 flex gap-4">
                     <FileInput
                       className="w-1/2"
+                      // file wiil be required if component are not call from update page
                       required={callFromUpdatePage ? false : true}
                       values={{
                         multiple: false,
@@ -127,6 +133,7 @@ const EventOrSportsForm = ({
                     />
                     <FileInput
                       className="w-1/2"
+                      // file wiil be required if component are not call from update page
                       required={callFromUpdatePage ? false : true}
                       values={{
                         multiple: false,
@@ -143,6 +150,7 @@ const EventOrSportsForm = ({
                       type: "text",
                       placeholder: "Location",
                       className: "col-span-2",
+                      // set initial value of input if value exist
                       value: values && values.location,
                     }}
                   />
@@ -153,6 +161,7 @@ const EventOrSportsForm = ({
                     values={{
                       name: "description",
                       title: "Description",
+                      // set initial value of input if value exist
                       value: values && values.description,
                     }}
                   />

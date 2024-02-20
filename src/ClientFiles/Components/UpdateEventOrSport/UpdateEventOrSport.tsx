@@ -15,6 +15,7 @@ const UpdateEventOrSport = ({ item }: { item: event_And_Sports }) => {
   const handleUpdateEventOrSport = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form: any = e.target;
+    // set old value if the user does not provide input otherwise set user value link
     const name = form.name.value || item.title;
     const price = form.price.value || item.price;
     const talentSpeaker = form.talentSpeaker.value || item.stats.talentSpeaker;
@@ -24,11 +25,13 @@ const UpdateEventOrSport = ({ item }: { item: event_And_Sports }) => {
     const thumbnailImg = form.thumbnailImg.files[0];
     const bgImg = form.bgImg.files[0];
 
-    // upload img if user gives input image
+    // set old image link if the user does not provide input otherwise upload imag on uimgbb and set link
     const thumbnailImgUrl =
-    form.thumbnailImg.files.length < 1 ? item.img : await uploadImage(thumbnailImg);
+      form.thumbnailImg.files.length < 1
+        ? item.img
+        : await uploadImage(thumbnailImg);
     const bgImgUrl =
-    form.bgImg.files.length < 1 ? item.bgImg : await uploadImage(bgImg);
+      form.bgImg.files.length < 1 ? item.bgImg : await uploadImage(bgImg);
 
     // creat updated Event or sports object
     const updateEventOrSportsObj = {
@@ -47,7 +50,7 @@ const UpdateEventOrSport = ({ item }: { item: event_And_Sports }) => {
       hostEmail: userInfo.email,
     };
 
-    // add movie
+    // add update or sports
     const result = await axiosSecure.patch(
       `/api/v1/host_apis/category/events?email=${userInfo.email}&id=${item._id}`,
       updateEventOrSportsObj

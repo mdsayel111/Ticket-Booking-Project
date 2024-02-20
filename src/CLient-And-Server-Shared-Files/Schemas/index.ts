@@ -1,5 +1,4 @@
-import { strict } from "assert";
-
+import { strict } from 'assert';
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
@@ -137,7 +136,7 @@ export const userSchema = new Schema({
     role: {
         type: String,
         default: "user",
-        enum: ["user", "host", "admin"]
+        // enum: ["user", "host", "admin"]
     },
     status: {
         type: String,
@@ -168,9 +167,9 @@ export const bookingSchema = new Schema({
         type: String,
         required: [true, "Some Property is missing"]
     },
-    bookingsId: {
-        type: Array,
-        required: [true, "Some Property is missing"]
+    bookingsItem: {
+        type: Object,
+        required: [true, "Some Property is missing"],
     },
     status: { type: String, default: "pending", enum: ["pending", "complete"] },
     date: {

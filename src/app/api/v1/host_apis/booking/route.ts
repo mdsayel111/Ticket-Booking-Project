@@ -1,7 +1,7 @@
 import { bookingCollection } from "@/CLient-And-Server-Shared-Files/Collections"
+import { verifyHost } from "@/CLient-And-Server-Shared-Files/Utils/auth-utils"
 import { serverError, unathorizeError } from "@/ServerFiles/OnError"
 import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils"
-import { verifyHost } from "@/ServerFiles/Utils/auth-utils"
 import { NextRequest, NextResponse } from "next/server"
 
 export const GET = async (req: NextRequest) => {
