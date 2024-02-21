@@ -12,23 +12,25 @@ const Footer = () => {
         marginTop: "40px",
       }}
     >
-      <div className="flex justify-between w-[90%]">
-        <Logo />
-        <LogoGroup />
-      </div>
-      <hr className="border-gray-400 w-[90%] mt-8" />
-      <div className="flex justify-between w-[90%] mt-8 text-white">
-        <p>
-          Copyright © 2020.All Rights Reserved By{" "}
-          <span className="text-[var(--tertiary)]">TicketBD</span>
-        </p>
-        <ul className="flex footer-menu">
-          <li>About</li>
-          <li>Terms Of Use</li>
-          <li>Privacy Policy</li>
-          <li>FAQ</li>
-          <li>Feedback</li>
-        </ul>
+      <div className="absolute z-20 w-[90%]">
+        <div className="flex lg:justify-between items-center w-[90%] justify-center flex-col lg:flex-row gap-4">
+          <Logo />
+          <LogoGroup />
+        </div>
+        <hr className="border-gray-400 w-[90%] mt-8" />
+        <div className="flex flex-col lg:flex-row gap-4 justify-center items-center lg:justify-between w-[90%] mt-8 text-white">
+          <p>
+            Copyright © 2020.All Rights Reserved By{" "}
+            <span className="text-[var(--tertiary)]">TicketBD</span>
+          </p>
+          <ul className="flex footer-menu flex-wrap">
+            <li>About</li>
+            <li>Terms Of Use</li>
+            <li>Privacy Policy</li>
+            <li>FAQ</li>
+            <li>Feedback</li>
+          </ul>
+        </div>
       </div>
     </BackgroundImage>
   );

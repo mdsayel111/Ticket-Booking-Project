@@ -28,7 +28,6 @@ export const PATCH = async (req: NextRequest) => {
         }
         return unathorizeError(req)
     } catch (error) {
-        console.log(error.message)
         return serverError(req)
     }
 }

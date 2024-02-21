@@ -15,7 +15,11 @@ interface dataType {
   multiData: (movie | event_And_Sports)[];
 }
 
-const SpecificCategoryItems = ({ callFromHost }: { callFromHost?: boolean }) => {
+const SpecificCategoryItems = ({
+  callFromHost,
+}: {
+  callFromHost?: boolean;
+}) => {
   const { category, id }: { category: string; id: string } = useParams();
   const [date, setDate] = useState<string | Date>("all");
   const [data, setData] = useState<dataType>({} as dataType);
@@ -93,8 +97,9 @@ const SpecificCategoryItems = ({ callFromHost }: { callFromHost?: boolean }) => 
             date: date === "all" ? "" : date,
             setDate: setDate,
           }}
+          className="w-fit mx-auto"
         />
-        <div className="relative grid grid-cols-1 lg:grid-cols-4 gap-8 my-10">
+        <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-fit mx-auto gap-8 my-10">
           {data?.multiData?.map((item: movie | event_And_Sports) => (
             <ItemCard
               callFromHost={callFromHost}
@@ -103,7 +108,7 @@ const SpecificCategoryItems = ({ callFromHost }: { callFromHost?: boolean }) => 
                 item: JSON.parse(JSON.stringify(item)),
                 path: callFromHost
                   ? `/host/update_item/${category}/${item._id}?email=${userInfo.email}`
-                  : `/category/${category}/${item._id}`,
+                  : `/category/${category}/${item._id}?email=${userInfo.email}`,
               }}
             />
           ))}

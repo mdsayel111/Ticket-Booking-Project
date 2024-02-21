@@ -1,0 +1,19 @@
+#item-info {
+  left: calc(10% + 230px);
+  width: calc(100% - (10% + 300px));
+}
+
+#tomatar {
+  margin-left: calc(10% + 230px);
+}
+
+@media only screen and (max-width: 1023px) {
+  #item-info {
+    left: 50%;
+    width: 90%;
+    translate: -50% 0%;
+  }
+  #tomatar {
+    margin-left: 0;
+  }
+}

@@ -5,13 +5,14 @@ import { event_And_Sports } from "@/ClientFiles/Types/CommonTypes";
 import { uploadImage } from "@/ClientFiles/Utils/ImageUpload";
 import useAxiosSecure from "@/ClientFiles/Hooks/useAxiosSecure";
 import { useAppSelector } from "@/ClientFiles/Hooks/ReduxHook";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 const UpdateEventOrSport = ({ item }: { item: event_And_Sports }) => {
   const { category } = useParams();
   const axiosSecure = useAxiosSecure();
   const { userInfo } = useAppSelector((state) => state.user);
+  const router = useRouter();
   const handleUpdateEventOrSport = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form: any = e.target;
@@ -57,6 +58,7 @@ const UpdateEventOrSport = ({ item }: { item: event_And_Sports }) => {
     );
     toast.success(result.data.message);
     form.reset();
+    router.refresh();
   };
   return (
     <EventOrSportsForm

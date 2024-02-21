@@ -32,7 +32,6 @@ export const POST = async (req: NextRequest) => {
         }
         return NextResponse.json({ message: "Email or password incorrect" })
     } catch (error) {
-        console.log(error)
         return serverError(req)
     }
 };

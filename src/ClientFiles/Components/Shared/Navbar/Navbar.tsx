@@ -67,7 +67,9 @@ export default function Navbar(props: Props) {
     { title: "Add Sports", path: "/host/add/sports/add_sport" },
   ];
 
-  const adminItems = [{ title: "Users", path: "/admin/users" }];
+  const adminItems = [
+    { title: "Users", path: `/admin/users?email=${userInfo.email}` },
+  ];
 
   // handle logout function
   const handleLogOut = () => {

@@ -1,3 +1,5 @@
+// todo: convert all this function for server and client both
+
 const jwt = require('jsonwebtoken');
 import { NextRequest } from "next/server";
 import { userCollection } from "../Collections";

@@ -1,10 +1,10 @@
+import BookingBtn from "@/ClientFiles/HOC/BookingBtn";
 import { event_And_Sports } from "@/ClientFiles/Types/CommonTypes";
 import Image from "next/image";
-import BackgroundImage from "../Shared/BackgroundImage/BackgroundImage";
-import CommonButton from "../Shared/CommonButton/CommonButton";
-import Container from "../Shared/Container/Container";
-import CountDawn from "../Shared/CountDawn/CountDawn";
-import BookingBtn from "@/ClientFiles/HOC/BookingBtn";
+import BackgroundImage from "../../Shared/BackgroundImage/BackgroundImage";
+import CommonButton from "../../Shared/CommonButton/CommonButton";
+import Container from "../../Shared/Container/Container";
+import CountDawn from "../../Shared/CountDawn/CountDawn";
 
 const Event_Or_Sports_Details = ({
   values,
@@ -19,7 +19,7 @@ const Event_Or_Sports_Details = ({
           <></>
         </BackgroundImage>
         <Container>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between flex-col-reverse md:flex-row">
             <div className="space-y-2 w-1/2">
               <h3 className="text-[var(--tertiary)] text-xl font-bold">
                 ARE YOU READY TO ATTEND?
@@ -57,7 +57,7 @@ const Event_Or_Sports_Details = ({
               </div>
             </div>
           </div>
-          <div className="flex gap-4 w-fit mx-auto p-8 bg-[#032055] my-10 rounded-lg">
+          <div className="flex gap-4 w-fit mx-auto p-8 bg-[#032055] my-10 rounded-lg flex-col md:flex-row">
             <div className="flex items-center gap-4 p-4 bg-[#08378E]">
               <Image
                 src={

@@ -1,15 +1,15 @@
 "use client";
-import * as React from "react";
+import { useAppSelector } from "@/ClientFiles/Hooks/ReduxHook";
+import useAxiosSecure from "@/ClientFiles/Hooks/useAxiosSecure";
+import { user } from "@/ClientFiles/Types/CommonTypes";
 import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import useAxiosSecure from "@/ClientFiles/Hooks/useAxiosSecure";
-import { useAppSelector } from "@/ClientFiles/Hooks/ReduxHook";
-import { user } from "@/ClientFiles/Types/CommonTypes";
+import * as React from "react";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import "./UpdateRoleSelectInput.css"
 
 const UpdateRoleSelectInput = ({ user }: { user: user }) => {
   const [role, setRole] = React.useState("");
@@ -29,10 +29,15 @@ const UpdateRoleSelectInput = ({ user }: { user: user }) => {
   };
 
   return (
-    <div className="w-fit ml-auto">
-      <Box sx={{ minWidth: 120 }}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Age</InputLabel>
+    <div id="select-box" className="w-fit ml-auto">
+      <Box sx={{ minWidth: 120 }} >
+        <FormControl fullWidth >
+          <InputLabel
+            id="demo-simple-select-label"
+            style={{ color: "white", borderColor: "white" }}
+          >
+            Age
+          </InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"

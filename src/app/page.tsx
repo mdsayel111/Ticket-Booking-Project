@@ -1,8 +1,5 @@
 import AllCategoryItems from "@/ClientFiles/Components/Shared/AllCategoryItems/AllCategoryItems";
 import Banner from "@/ClientFiles/Components/Shared/Banner/Banner";
-import CategoryHeader from "@/ClientFiles/Components/Shared/CategoryHeader/CategoryHeader";
-import Container from "@/ClientFiles/Components/Shared/Container/Container";
-import ItemCard from "@/ClientFiles/Components/Shared/ItemCard/ItemCard";
 import { event_And_Sports, movie } from "@/ClientFiles/Types/CommonTypes";
 import { getLatestData } from "@/ClientFiles/Utils/FetchPagedata";
 

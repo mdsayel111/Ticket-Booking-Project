@@ -48,7 +48,7 @@ const MovieForm = ({
                 spacing={2}
                 sx={{ margin: "0 auto", gap: "16px" }}
               >
-                <div className="grid grid-cols-2 gap-4 w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full">
                   <Input
                     maxLength={15}
                     required={true}
@@ -59,9 +59,10 @@ const MovieForm = ({
                       placeholder: "Name",
                       // set initial value of input if value exist
                       value: values && values.name,
+                      className: "col-span-2 lg:col-span-1"
                     }}
                   />
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 col-span-2 lg:col-span-1">
                     <Input
                       required={true}
                       values={{
@@ -71,6 +72,7 @@ const MovieForm = ({
                         placeholder: "3600 s",
                         // set initial value of input if value exist
                         value: values && values.duration,
+                        className: "w-1/2"
                       }}
                     />
                     <Input
@@ -82,6 +84,7 @@ const MovieForm = ({
                         placeholder: "Price",
                         // set initial value of input if value exist
                         value: values && values.price,
+                        className: "w-1/2"
                       }}
                     />
                   </div>
@@ -97,7 +100,7 @@ const MovieForm = ({
                       value: values && values.location,
                     }}
                   />
-                  <div>
+                  <div className="col-span-2 lg:col-span-1">
                     <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">
                       Languages
                     </h3>

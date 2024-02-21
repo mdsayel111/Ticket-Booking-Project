@@ -1,16 +1,17 @@
+import BookingBtn from "@/ClientFiles/HOC/BookingBtn";
 import { movie } from "@/ClientFiles/Types/CommonTypes";
 import moment from "moment";
 import Image from "next/image";
 import { FaCalendarAlt, FaStopwatch } from "react-icons/fa";
-import BackgroundImage from "../Shared/BackgroundImage/BackgroundImage";
 import { FcRating } from "react-icons/fc";
-import CommonButton from "../Shared/CommonButton/CommonButton";
-import Container from "../Shared/Container/Container";
-import CountDawn from "../Shared/CountDawn/CountDawn";
-import LogoGroup from "../Shared/LogoGroup/LogoGroup";
-import NoSSR from "../Wraper/NoSSR";
-import BasicTabs from "./DetailsTabs/DetailsTabs";
-import BookingBtn from "@/ClientFiles/HOC/BookingBtn";
+import BackgroundImage from "../../Shared/BackgroundImage/BackgroundImage";
+import CommonButton from "../../Shared/CommonButton/CommonButton";
+import Container from "../../Shared/Container/Container";
+import CountDawn from "../../Shared/CountDawn/CountDawn";
+import LogoGroup from "../../Shared/LogoGroup/LogoGroup";
+import NoSSR from "../../Wraper/NoSSR";
+import BasicTabs from "../DetailsTabs/DetailsTabs";
+import "./MovieDetails.css"
 
 const MovieDetails = ({ values }: { values: { item: movie } }) => {
   const { item } = values;
@@ -44,17 +45,15 @@ const MovieDetails = ({ values }: { values: { item: movie } }) => {
   return (
     <div>
       <BackgroundImage values={{ background: `url("${item.bgImg}")` }}>
-        <span className="absolute z-20 rounded-lg overflow-hidden -bottom-10 left-[10%]">
+        <span className="hidden lg:block absolute z-20 rounded-lg overflow-hidden -bottom-10 left-[10%] lg:">
           <Image src={item.img} width={200} height={400} alt="img" />
         </span>
         <div
-          className="absolute z-20 bottom-10 flex justify-between"
-          style={{
-            left: "calc(10% + 230px)",
-            width: "calc(100% - (10% + 300px))",
-          }}
+        id="item-info"
+          className="absolute w-full z-20 bottom-10 flex flex-col md:flex-row justify-between gap-4"
+          
         >
-          <div className="space-y-2">
+          <div className="space-y-2 w-fit md:w-full mx-auto">
             <h1 className="text-[var(--tertiary)] font-bold text-2xl">
               {item.title}
             </h1>
@@ -85,9 +84,9 @@ const MovieDetails = ({ values }: { values: { item: movie } }) => {
       <div className="w-full mt-8 text-white">
         <div className="flex items-center gap-2">
           <div
+          id="tomatar"
             className="flex items-center flex-col"
             style={{
-              marginLeft: "calc(10% + 230px)",
               width: "calc(100% - (10% + 300px))",
             }}
           >

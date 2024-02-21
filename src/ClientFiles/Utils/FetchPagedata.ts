@@ -100,9 +100,6 @@ export const getBookingsData = async (params: { email: string }) => {
 
 export const getUserData = async (searchParams: { status: string }) => {
     try {
-        // const isAdmin = await verifyAdmin(req)
-        // if (isAdmin) {
-        // const { searchParams } = new URL(req.url)
         const status = searchParams.status
         await connectDB()
         if (status) {
@@ -111,9 +108,6 @@ export const getUserData = async (searchParams: { status: string }) => {
         }
         const multiUser = await userCollection.find({})
         return { multiUser }
-        // }
-        // return unathorizeError(req)
     } catch (error) {
-        // return serverError(req)
     }
 }

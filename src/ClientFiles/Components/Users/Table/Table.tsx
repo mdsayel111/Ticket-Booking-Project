@@ -82,7 +82,15 @@ export default function CustomTable({ data }: { data: user[] }) {
   };
 
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+    <Paper
+    className="my-8"
+      sx={{
+        width: "100%",
+        overflow: "hidden",
+        backgroundColor: "var(--secondary)",
+        color: "white",
+      }}
+    >
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -91,7 +99,11 @@ export default function CustomTable({ data }: { data: user[] }) {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth }}
+                  style={{
+                    minWidth: column.minWidth,
+                    color: "white",
+                    backgroundColor: "var(--secondary)",
+                  }}
                 >
                   {column.label}
                 </TableCell>
@@ -107,7 +119,7 @@ export default function CustomTable({ data }: { data: user[] }) {
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
-                        <TableCell key={column.id} align={column.align}>
+                        <TableCell key={column.id} align={column.align} style={{color: "white"}}>
                           {column.format && typeof value === "number"
                             ? column.format(value)
                             : value}
@@ -121,6 +133,7 @@ export default function CustomTable({ data }: { data: user[] }) {
         </Table>
       </TableContainer>
       <TablePagination
+      style={{color: "white"}}
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
         count={rows.length}

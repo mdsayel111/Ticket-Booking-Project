@@ -6,10 +6,12 @@ import { useAppSelector } from "@/ClientFiles/Hooks/ReduxHook";
 import useAxiosSecure from "@/ClientFiles/Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { movie } from "@/ClientFiles/Types/CommonTypes";
+import { useRouter } from "next/navigation";
 
 const UpdateMovie = ({ item }: { item: movie }) => {
   const { userInfo } = useAppSelector((state) => state.user);
   const axiosSecure = useAxiosSecure();
+  const router = useRouter();
 
   const handleUpdateMovie = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -64,6 +66,7 @@ const UpdateMovie = ({ item }: { item: movie }) => {
     );
     toast.success(result.data.message);
     form.reset();
+    router.refresh();
   };
   return (
     <div>

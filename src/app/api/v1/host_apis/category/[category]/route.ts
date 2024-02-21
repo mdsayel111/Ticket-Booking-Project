@@ -22,7 +22,6 @@ export const POST = async (req: NextRequest, { params }: any) => {
         }
         return unathorizeError(req)
     } catch (error: any) {
-        console.log(error.message)
         return serverError(req)
     }
 }
@@ -120,7 +119,6 @@ export const GET = async (req: NextRequest, { params }: any) => {
             }
         } else { return unathorizeError(req) }
     } catch (error: any) {
-        console.log(error.message)
         return serverError(req)
     }
 }

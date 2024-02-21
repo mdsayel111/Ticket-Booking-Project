@@ -24,7 +24,6 @@ export const addFeild = async () => {
         console.log(result)
 
     } catch (error) {
-        console.log(error)
         setTimeout(addFeild, 1000);
     }
 }

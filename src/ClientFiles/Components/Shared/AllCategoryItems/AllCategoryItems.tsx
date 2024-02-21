@@ -28,14 +28,14 @@ const AllCategoryItems = ({
           <CategoryHeader
             values={{ title: category.title, link: category.path }}
           />
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 my-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 w-fit mx-auto lg:grid-cols-4 gap-8 my-10">
             {items[itemName[index]].map((item, index) => (
               <ItemCard
                 callFromHost={callFromHost}
                 key={index}
                 values={{
                   item: JSON.parse(JSON.stringify(item)),
-                  path: `/category/${item.category}s/${item._id}`,
+                  path: `/category/${item.category}s/${item._id}?email=${userInfo.email}`,
                 }}
                 updatePath={`/host/update_item/${category.title}/${item._id}?email=${userInfo.email}`}
               />

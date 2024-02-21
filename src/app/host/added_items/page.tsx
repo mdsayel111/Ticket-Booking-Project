@@ -1,10 +1,10 @@
 import AllCategoryItems from "@/ClientFiles/Components/Shared/AllCategoryItems/AllCategoryItems";
-import CategoryHeader from "@/ClientFiles/Components/Shared/CategoryHeader/CategoryHeader";
-import Container from "@/ClientFiles/Components/Shared/Container/Container";
-import ItemCard from "@/ClientFiles/Components/Shared/ItemCard/ItemCard";
 import TextAnimation from "@/ClientFiles/Components/Shared/TextAnimation/TextAnimation";
 import { event_And_Sports, movie } from "@/ClientFiles/Types/CommonTypes";
 import { getAddedItemsData } from "@/ClientFiles/Utils/FetchPagedata";
+import { verifyHost } from "@/ClientFiles/Utils/auth-utils";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 const page = async ({
   params,
@@ -13,8 +13,25 @@ const page = async ({
   params: { categoryName: string };
   searchParams: { email: string };
 }) => {
-  const addedItems: Record<string, (movie | event_And_Sports)[]> =
-    await getAddedItemsData(searchParams);
+  // get cookies
+  const cookieStore = cookies();
+  const tokenObj = cookieStore.get("token");
+  const token = tokenObj?.value as string;
+  // format email
+  searchParams.email = searchParams.email.replace("%40", "@");
+  // fetch all bookings data
+  const isVerify = await verifyHost({
+    // send email like searchParams
+    searchParams,
+    token,
+  });
+  let addedItems: Record<string, (movie | event_And_Sports)[]>;
+  console.log(isVerify);
+  if (isVerify) {
+    addedItems = await getAddedItemsData(searchParams);
+  } else {
+    redirect("/signup_or_signin");
+  }
 
   return (
     <div>
