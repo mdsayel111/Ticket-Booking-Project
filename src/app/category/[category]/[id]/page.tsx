@@ -6,6 +6,7 @@ import { verifyToken } from "@/ClientFiles/Utils/auth-utils";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { movie, event_And_Sports } from "@/ClientFiles/Types/CommonTypes";
+import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils";
 
 const page = async ({
   params,
@@ -30,6 +31,7 @@ const page = async ({
   });
   let item;
   if (isVerify) {
+    await connectDB();
     const { singleData } = await getData(params, {
       id,
     });

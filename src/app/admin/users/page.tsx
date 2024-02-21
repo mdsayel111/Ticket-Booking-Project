@@ -1,6 +1,7 @@
 import CustomTable from "@/ClientFiles/Components/Users/Table/Table";
 import { getUserData } from "@/ClientFiles/Utils/FetchPagedata";
 import { verifyAdmin } from "@/ClientFiles/Utils/auth-utils";
+import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -26,6 +27,8 @@ const page = async ({
   });
   let userData;
   if (isVerify) {
+    await connectDB();
+    console.log("connected")
     const res = await getUserData(searchParams);
     userData = res;
   } else {

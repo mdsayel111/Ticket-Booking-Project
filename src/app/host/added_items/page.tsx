@@ -3,6 +3,7 @@ import TextAnimation from "@/ClientFiles/Components/Shared/TextAnimation/TextAni
 import { event_And_Sports, movie } from "@/ClientFiles/Types/CommonTypes";
 import { getAddedItemsData } from "@/ClientFiles/Utils/FetchPagedata";
 import { verifyHost } from "@/ClientFiles/Utils/auth-utils";
+import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -28,6 +29,7 @@ const page = async ({
   let addedItems: Record<string, (movie | event_And_Sports)[]>;
   console.log(isVerify);
   if (isVerify) {
+    await connectDB();
     addedItems = await getAddedItemsData(searchParams);
   } else {
     redirect("/signup_or_signin");

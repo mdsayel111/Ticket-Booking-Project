@@ -2,6 +2,7 @@ import UpdateEventOrSport from "@/ClientFiles/Components/UpdateEventOrSport/Upda
 import UpdateMovie from "@/ClientFiles/Components/UpdateMovie/UpdateMovie";
 import { getAddedSingleItemsData } from "@/ClientFiles/Utils/FetchPagedata";
 import { verifyHost } from "@/ClientFiles/Utils/auth-utils";
+import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils";
 import { NoSsr } from "@mui/material";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -28,6 +29,7 @@ const page = async ({
   });
   let singleData;
   if (isVerify) {
+    await connectDB();
     const res = await getAddedSingleItemsData(searchParams, params);
     singleData = res.singleData;
   } else {

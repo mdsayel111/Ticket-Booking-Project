@@ -2,6 +2,7 @@
 
 const jwt = require('jsonwebtoken');
 import { userCollection } from "@/CLient-And-Server-Shared-Files/Collections";
+import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils";
 
 export const verifyToken = async (values: { searchParams: { email: string }, token: string }) => {
     const { searchParams } = values
@@ -26,6 +27,7 @@ export const verifyToken = async (values: { searchParams: { email: string }, tok
 export const verifyHost = async (values: { searchParams: { email: string }, token: string }) => {
     try {
         const email = await verifyToken(values)
+        await connectDB()
         const { role } = await userCollection.findOne({ email: email })
         if (role === "host") {
             return true
@@ -38,6 +40,7 @@ export const verifyHost = async (values: { searchParams: { email: string }, toke
 
 export const verifyAdmin = async (values: { searchParams: { email: string }, token: string }) => {
     const email = await verifyToken(values)
+    await connectDB()
     const { role } = await userCollection.findOne({ email: email }) || {}
     if (role === "admin") {
         return true
