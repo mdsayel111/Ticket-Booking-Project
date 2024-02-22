@@ -4,6 +4,7 @@ import NoSSR from "@/ClientFiles/Components/Wraper/NoSSR";
 import { getBookingsData } from "@/ClientFiles/Utils/FetchPagedata";
 import { verifyToken } from "@/ClientFiles/Utils/auth-utils";
 import { connectDB } from "@/ServerFiles/Utils/MongoDB-Utils";
+import { verify } from "crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -38,7 +39,7 @@ const page = async ({
   }
   return (
     <Container>
-      <div className="my-10 grid grid-cols-2 gap-10">
+      <div className="my-10 grid grid-col-1 lg:grid-cols-2 gap-10">
         {bookingData.map((booking: any) => (
           <NoSSR key={booking._id}>
             <BookingCard booking={booking} />

@@ -11,15 +11,29 @@ export default function BookingCard({ booking }: { booking: any }) {
   const { bookingsItem } = booking;
 
   return (
-    <Card sx={{ display: "flex", width: "100%",  }}>
-      <Box sx={{ display: "flex" }}>
+    <Card
+      sx={{
+        display: "flex",
+        width: "100%",
+        backgroundColor: "var(--secondary)",
+      }}
+    >
+      <div className="flex flex-col lg:flex-row">
         <CardMedia
+          className="w-full aspect-[1/1.5] lg:w-[200px] lg:h-[162px]"
           component="img"
           sx={{ width: 151 }}
           image={bookingsItem.img}
           alt="Live from space album cover"
         />
-        <CardContent sx={{ flex: "1 0 auto", flexDirection: "column" }}>
+        <CardContent
+          className="h-fit"
+          sx={{
+            color: "white",
+            flex: "1 0 auto",
+            flexDirection: { xs: "column", lg: "row" },
+          }}
+        >
           <Typography
             component="div"
             variant="h5"
@@ -44,7 +58,7 @@ export default function BookingCard({ booking }: { booking: any }) {
             </div>
           </Box>
         </CardContent>
-      </Box>
+      </div>
     </Card>
   );
 }
