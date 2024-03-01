@@ -25,7 +25,9 @@ export const GET = async (req: NextRequest, { params }: any) => {
                     // make start date and end date for filter
                     const startDate = new Date(date)
                     const endDate = new Date(startDate);
-                    endDate.setDate(startDate.getDate() + 2);
+                    endDate.setDate(startDate.getDate() + 1);
+
+                    console.log(startDate, endDate)
 
                     filter.date = {
                         $gte: startDate,

@@ -23,6 +23,7 @@ const ItemCard = ({
   updatePath?: string;
 }) => {
   const { item, path } = values;
+  console.log(item.date);
   return (
     <NoSSR>
       <div className="relative max-w-[320px]">
@@ -64,7 +65,7 @@ const ItemCard = ({
                     {item.title}
                   </Typography>
                   <span className="text-white">
-                    Date : {moment(item.date).format("DD/MM/YYYY")}
+                    Date : {moment.utc(item.date).format("DD/MM/YYYY")}
                   </span>
                 </div>
               </CardContent>
