@@ -18,7 +18,7 @@ export default function BookingCard({ booking }: { booking: any }) {
         backgroundColor: "var(--secondary)",
       }}
     >
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex w-full flex-col lg:flex-row">
         <CardMedia
           className="w-full aspect-[1/1.5] lg:w-[200px] lg:h-[162px]"
           component="img"
@@ -46,7 +46,7 @@ export default function BookingCard({ booking }: { booking: any }) {
             {bookingsItem.title}
           </Typography>
           <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-            <div>
+            <div className="mx-auto">
               <h3>User Name: {booking.userName}</h3>
               <h3>User Email: {booking.userEmail}</h3>
               <h3>

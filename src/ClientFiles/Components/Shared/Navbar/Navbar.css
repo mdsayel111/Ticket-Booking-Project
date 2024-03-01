@@ -9,3 +9,7 @@
 .css-1c35hjw-MuiPaper-root-MuiAccordion-root {
   background-color: transparent !important;
 }
+
+.active {
+  color: red;
+}

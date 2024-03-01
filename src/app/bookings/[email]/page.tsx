@@ -30,6 +30,7 @@ const page = async ({
     searchParams: { email: params.email },
     token,
   });
+  console.log(isVerify);
   if (isVerify) {
     await connectDB();
     const res = await getBookingsData(params);

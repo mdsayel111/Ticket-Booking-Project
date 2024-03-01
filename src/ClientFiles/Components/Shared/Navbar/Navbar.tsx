@@ -24,6 +24,7 @@ import { setUser } from "@/ClientFiles/Slices/UserSlices";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { IoIosArrowDropdown } from "react-icons/io";
 import "./Navbar.css";
+import { usePathname } from "next/navigation";
 
 interface Props {
   /**
@@ -41,6 +42,7 @@ export default function Navbar(props: Props) {
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.user);
   const [isDashboardNav, setIsDashboardNav] = React.useState(false);
+  const pathname = usePathname();
 
   // navbar items title and link array
   const navItems = [
@@ -140,7 +142,10 @@ export default function Navbar(props: Props) {
               <ListItem key={item.title} disablePadding>
                 <ListItemButton sx={{ textAlign: "center" }}>
                   <Link href={item.path}>
-                    <ListItemText primary={item.title} />
+                    <ListItemText
+                      className={`${pathname === item.path ? "active" : ""}`}
+                      primary={item.title}
+                    />
                   </Link>
                 </ListItemButton>
               </ListItem>
@@ -234,7 +239,12 @@ export default function Navbar(props: Props) {
           >
             {navItems.map((item) => (
               <Link key={item.title} href={item.path}>
-                <Button sx={{ color: "#fff" }}>{item.title}</Button>
+                <Button
+                  className={`${pathname === item.path ? "active" : ""}`}
+                  sx={{ color: "#fff" }}
+                >
+                  {item.title}
+                </Button>
               </Link>
             ))}
 
@@ -244,10 +254,9 @@ export default function Navbar(props: Props) {
                 onClick={handleDashboardNavToggole}
                 sx={{ color: "#fff" }}
               >
-                {"Dashboard"}
+                Dashboard
               </Button>
             )}
-            {/* show dashboard menu items if user role !== "user" */}
             {userInfo?.email ? (
               <CommonButton
                 value={{
@@ -263,6 +272,7 @@ export default function Navbar(props: Props) {
           </Box>
         </Toolbar>
       </AppBar>
+      {/* drawer navbar */}
       <nav>
         <Drawer
           container={container}
