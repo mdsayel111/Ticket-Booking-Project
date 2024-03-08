@@ -27,7 +27,7 @@ export const POST = async (req: NextRequest) => {
 
             return new NextResponse(JSON.stringify({ message: "SignIn successfull", user: { name: userFromDB.name, email: userFromDB.email, role: userFromDB.role } }), {
                 status: 200,
-                headers: { "Set-Cookie": `token=${token}; sameSite=strict; Path=/; httpOnly=true; maxAge=60*60*24` },
+                headers: { "Set-Cookie": `token=${token}; sameSite=strict; Path=/; httpOnly=true; maxAge=60*60*24; ex` },
             });
         }
         return NextResponse.json({ message: "Email or password incorrect" })
