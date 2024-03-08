@@ -36,7 +36,7 @@ const UpdateRoleSelectInput = ({ user }: { user: user }) => {
             id="demo-simple-select-label"
             style={{ color: "white", borderColor: "white" }}
           >
-            Age
+            Role
           </InputLabel>
           <Select
             labelId="demo-simple-select-label"
