@@ -39,11 +39,14 @@ export default function SignIn({
       password: data.get("password"),
     };
     const res = await axios.post("/api/v1/user_apis/auth", userData);
-    toast.success(res.data.message);
-    dispatch(setUser(res.data.user));
-    console.log(res.data.user)
-    localStorage.setItem("user", JSON.stringify(res.data.user));
-    router.push("/");
+    if (res.data.user) {
+      toast.success(res.data.message);
+      dispatch(setUser(res.data.user));
+      console.log(res.data.user);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      return router.push("/");
+    }
+    toast.error(res.data.message);
   };
 
   return (
@@ -52,7 +55,7 @@ export default function SignIn({
         handleSubmit: handleSubmit,
         icon: <FaLock />,
         title: "Sign In",
-        btnText: "sing in"
+        btnText: "sing in",
       }}
     >
       <Grid container spacing={2} sx={{ margin: "0 auto" }}>

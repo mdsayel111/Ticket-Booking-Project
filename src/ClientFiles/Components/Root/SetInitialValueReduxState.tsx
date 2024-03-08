@@ -7,8 +7,9 @@ import React, { ReactNode, useEffect } from "react";
 const SetInitialValueReduxState = ({ children }: { children: ReactNode }) => {
   const AppDispatch = useAppDispatch();
   useEffect(() => {
-    console.log(JSON.parse(localStorage.getItem("user") || "{}"));
-    AppDispatch(setUser(JSON.parse(localStorage.getItem("user") || "{}")));
+    const userDataString = localStorage.getItem("user");
+    console.log(typeof userDataString);
+    AppDispatch(setUser(userDataString ? JSON.parse(userDataString) : {}));
   }, []);
   return <>{children}</>;
 };
