@@ -6,7 +6,7 @@ import "./SignUpOrSignIn.css";
 import BackgroundImage from "../Shared/BackgroundImage/BackgroundImage";
 
 const SignUpOrSignIn = () => {
-  const [signUpOrSignIn, setSignUpOrSignIn] = useState("signUp");
+  const [signUpOrSignIn, setSignUpOrSignIn] = useState("signIn");
   return (
     <div className="w-full h-[100vh]">
       <BackgroundImage

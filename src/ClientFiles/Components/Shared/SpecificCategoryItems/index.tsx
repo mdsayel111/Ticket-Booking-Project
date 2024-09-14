@@ -28,9 +28,8 @@ const SpecificCategoryItems = ({
 
   // make url for fetch data for admin or user
   const url = callFromHost
-    ? `/api/v1/host_apis/category/${category}?email=${
-        userInfo.email
-      }&date=${date.toString()}`
+    ? `/api/v1/host_apis/category/${category}?email=${userInfo.email
+    }&date=${date.toString()}`
     : `/api/v1/public_apis/category/${category}?date=${date.toString()}`;
 
   const fetchData = async () => {
@@ -41,6 +40,8 @@ const SpecificCategoryItems = ({
   useEffect(() => {
     fetchData();
   }, [date, category]);
+
+  console.log(data.multiData)
 
   return (
     <>
@@ -53,13 +54,12 @@ const SpecificCategoryItems = ({
       ) : (
         <BackgroundImage
           values={{
-            background: `url(${
-              category === "movies"
-                ? "/images/banner02.jpg"
-                : category === "events"
+            background: `url(${category === "movies"
+              ? "/images/banner02.jpg"
+              : category === "events"
                 ? "/images/banner05.jpg"
                 : "/images/banner08.jpg"
-            })`,
+              })`,
             marginTop: "-68px",
           }}
         >
@@ -91,6 +91,7 @@ const SpecificCategoryItems = ({
           </div>
         </BackgroundImage>
       )}
+
       <Container>
         <FilterSection
           values={{
@@ -100,7 +101,7 @@ const SpecificCategoryItems = ({
           className="w-fit mx-auto"
         />
         <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-fit mx-auto gap-8 my-10">
-          {data?.multiData?.map((item: movie | event_And_Sports) => (
+          {data?.multiData ? data?.multiData?.length > 0 ? data?.multiData?.map((item: movie | event_And_Sports) => (
             <ItemCard
               callFromHost={callFromHost}
               key={item._id}
@@ -111,9 +112,10 @@ const SpecificCategoryItems = ({
                   : `/category/${category}/${item._id}?email=${userInfo.email}`,
               }}
             />
-          ))}
+          )) : <div className="min-h-screen flex justify-center items-center col-span-2 lg:col-span-4"><h2 className="text-red-500 text-center text-2xl">No data found for this date.</h2> </div> : <div className="min-h-screen flex justify-center items-center col-span-2 lg:col-span-4"></div>}
         </div>
       </Container>
+
     </>
   );
 };

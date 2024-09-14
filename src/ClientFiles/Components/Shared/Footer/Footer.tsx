@@ -12,7 +12,7 @@ const Footer = () => {
         marginTop: "40px",
       }}
     >
-      <div className="absolute z-20 w-[90%]">
+      <div className="absolute flex flex-col items-center z-20 w-[90%]">
         <div className="flex lg:justify-between items-center w-[90%] justify-center flex-col lg:flex-row gap-4">
           <Logo />
           <LogoGroup />
