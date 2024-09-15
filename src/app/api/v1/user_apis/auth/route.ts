@@ -23,11 +23,10 @@ export const POST = async (req: NextRequest) => {
                 email: userInfo.email,
             }, process.env.NEXT_PUBLIC_SECRET, { expiresIn: 60 * 60 });
 
-            console.log(userFromDB)
 
             return new NextResponse(JSON.stringify({ message: "SignIn successfull", user: { name: userFromDB.name, email: userFromDB.email, role: userFromDB.role } }), {
                 status: 200,
-                headers: { "Set-Cookie": `token=${token}; sameSite=strict; Path=/; httpOnly=true; maxAge=60*60*24; ex` },
+                headers: { "Set-Cookie": `token=${token}; SameSite=Strict; Path=/; HttpOnly; Max-Age=${60 * 60 * 24};` },
             });
         }
         return NextResponse.json({ message: "Email or password incorrect" })

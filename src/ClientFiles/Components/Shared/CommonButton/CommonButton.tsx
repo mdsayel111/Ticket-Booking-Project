@@ -1,13 +1,14 @@
 "use client";
-import React, { FC, MouseEventHandler } from "react";
-import "./CommonButton.css";
-import { motion } from "framer-motion";
 import { commonBtnProps } from "@/ClientFiles/Types/CommonTypes";
+import { handlePayment } from "@/service/payment";
+import { motion } from "framer-motion";
+import { FC } from "react";
+import "./CommonButton.css";
 
 const CommonButton: FC<commonBtnProps> = ({ value }) => {
   const { text, className, onClick } = value;
 
-  const blankFun = () => {};
+  const blankFun = () => { };
   return (
     <motion.button
       onClick={onClick || blankFun}

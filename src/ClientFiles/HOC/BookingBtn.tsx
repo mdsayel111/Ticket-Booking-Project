@@ -40,10 +40,8 @@ const BookingBtn = ({
       `/api/v1/user_apis/booking?email=${userInfo.email}`,
       bookingObj
     );
-    console.log(data);
     toast.success(data.message);
     router.refresh();
-    // revalidatePath("/bookings/[email]");
   };
 
   return (

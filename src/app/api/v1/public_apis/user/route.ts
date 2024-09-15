@@ -9,7 +9,6 @@ export const POST = async (req: NextRequest) => {
     try {
         await connectDB()
         const userData = await req.json()
-        console.log(userData)
         const { password } = userData
         const userHashPass = hashPass(password)
         const newUser = { ...userData, password: userHashPass }
