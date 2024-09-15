@@ -1,5 +1,4 @@
 import BookingCard from "@/ClientFiles/Components/Booking/BookingCard/BookingCard";
-import CheckOutBtn from "@/ClientFiles/Components/Booking/CheckOutBtn/CheckOutBtn";
 import Container from "@/ClientFiles/Components/Shared/Container/Container";
 import NoSSR from "@/ClientFiles/Components/Wraper/NoSSR";
 import { getBookingsData } from "@/ClientFiles/Utils/FetchPagedata";
@@ -30,7 +29,7 @@ const page = async ({
     searchParams: { email: params.email },
     token,
   });
-  
+
   if (isVerify) {
     await connectDB();
     const res = await getBookingsData(params);
@@ -41,9 +40,6 @@ const page = async ({
 
   return (
     <Container>
-      <div className="flex justify-end">
-        <CheckOutBtn />
-      </div>
       <div className="my-10 grid grid-col-1 lg:grid-cols-2 gap-10">
         {bookingData?.map((booking: any) => (
           <NoSSR key={booking._id}>
