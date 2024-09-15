@@ -1,6 +1,5 @@
 "use client";
 import { commonBtnProps } from "@/ClientFiles/Types/CommonTypes";
-import { handlePayment } from "@/service/payment";
 import { motion } from "framer-motion";
 import { FC } from "react";
 import "./CommonButton.css";
